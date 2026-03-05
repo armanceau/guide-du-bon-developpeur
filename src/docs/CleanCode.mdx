@@ -1,0 +1,550 @@
+---
+title: Guide du bon développeur/Clean Code
+---
+
+# ✨ Clean Code
+
+Le code propre (Clean Code) est un code facile à lire, comprendre et maintenir.
+
+## 🎯 Pourquoi du code propre ?
+
+> _"Any fool can write code that a computer can understand. Good programmers write code that humans can understand."_ - Martin Fowler
+
+### Lisibilité
+
+- Code lu 10x plus souvent qu'écrit
+- Facilite la collaboration
+- Réduit les bugs
+
+### Maintenabilité
+
+- Modifications plus rapides
+- Moins de risques de régression
+- Évolution plus facile
+
+### Coût
+
+- Réduit la dette technique
+- Économise du temps sur le long terme
+- Facilite l'onboarding
+
+## 📛 Nommage
+
+### Variables et constantes
+
+```javascript
+❌ Mauvais
+const d = new Date();
+const x = user.age;
+let tmp = [];
+
+✅ Bon
+const currentDate = new Date();
+const userAge = user.age;
+let activeUsers = [];
+```
+
+### Fonctions
+
+Les noms de fonctions doivent être des **verbes** qui décrivent l'action.
+
+```javascript
+❌ Mauvais
+function data() { ... }
+function user() { ... }
+function check() { ... }
+
+✅ Bon
+function fetchUserData() { ... }
+function getUserById(id) { ... }
+function isValidEmail(email) { ... }
+```
+
+### Classes
+
+Les noms de classes doivent être des **noms** qui représentent des concepts.
+
+```javascript
+❌ Mauvais
+class Manager { ... }
+class Data { ... }
+class DoThings { ... }
+
+✅ Bon
+class UserRepository { ... }
+class EmailValidator { ... }
+class PaymentProcessor { ... }
+```
+
+### Constantes
+
+```javascript
+❌ Mauvais
+const timeout = 5000;
+const max = 100;
+
+✅ Bon
+const CONNECTION_TIMEOUT_MS = 5000;
+const MAX_RETRY_ATTEMPTS = 100;
+```
+
+### Booléens
+
+Préfixez avec `is`, `has`, `should`, `can`
+
+```javascript
+❌ Mauvais
+const login = true;
+const user = false;
+
+✅ Bon
+const isLoggedIn = true;
+const hasPermission = false;
+const shouldUpdate = true;
+const canEdit = false;
+```
+
+## 🔧 Fonctions
+
+### Petites et focalisées
+
+```javascript
+❌ Mauvais - Fait trop de choses
+function processUser(user) {
+  // Validation
+  if (!user.email) throw new Error('Email required');
+  if (!user.name) throw new Error('Name required');
+
+  // Transformation
+  user.email = user.email.toLowerCase();
+  user.name = user.name.trim();
+
+  // Sauvegarde
+  db.save(user);
+
+  // Envoi email
+  sendWelcomeEmail(user.email);
+
+  // Logging
+  logger.info(`User ${user.id} created`);
+}
+
+✅ Bon - Une responsabilité par fonction
+function createUser(userData) {
+  const validatedUser = validateUser(userData);
+  const normalizedUser = normalizeUser(validatedUser);
+  const savedUser = saveUser(normalizedUser);
+
+  notifyNewUser(savedUser);
+  logUserCreation(savedUser);
+
+  return savedUser;
+}
+
+function validateUser(user) {
+  if (!user.email) throw new Error('Email required');
+  if (!user.name) throw new Error('Name required');
+  return user;
+}
+
+function normalizeUser(user) {
+  return {
+    ...user,
+    email: user.email.toLowerCase(),
+    name: user.name.trim()
+  };
+}
+```
+
+### Peu de paramètres
+
+```javascript
+❌ Mauvais - Trop de paramètres
+function createUser(name, email, age, address, phone, role, active) {
+  // ...
+}
+
+✅ Bon - Utiliser un objet
+function createUser({ name, email, age, address, phone, role, active }) {
+  // ...
+}
+
+// Utilisation
+createUser({
+  name: 'John',
+  email: 'john@example.com',
+  age: 30,
+  role: 'admin',
+  active: true
+});
+```
+
+### Pas d'effets de bord cachés
+
+```javascript
+❌ Mauvais - Modifie l'état global
+let total = 0;
+
+function addToTotal(amount) {
+  total += amount; // Side effect!
+  return total;
+}
+
+✅ Bon - Fonction pure
+function add(a, b) {
+  return a + b;
+}
+
+// L'appelant gère l'état
+let total = 0;
+total = add(total, amount);
+```
+
+### Un seul niveau d'abstraction
+
+```javascript
+❌ Mauvais - Mélange niveaux d'abstraction
+function displayUserProfile(userId) {
+  // Bas niveau - SQL
+  const query = 'SELECT * FROM users WHERE id = ?';
+  const user = db.execute(query, userId);
+
+  // Haut niveau - Business logic
+  const isAdmin = user.role === 'admin';
+
+  // Moyen niveau - DOM manipulation
+  document.getElementById('name').textContent = user.name;
+}
+
+✅ Bon - Même niveau d'abstraction
+function displayUserProfile(userId) {
+  const user = getUserById(userId);
+  const profile = buildUserProfile(user);
+  renderProfile(profile);
+}
+```
+
+## 💬 Commentaires
+
+### Le code doit s'auto-documenter
+
+```javascript
+❌ Mauvais - Commentaire inutile
+// Incrémente i
+i++;
+
+// Vérifie si l'utilisateur est admin
+if (user.role === 'admin') { ... }
+
+✅ Bon - Code explicite, pas de commentaire nécessaire
+const isAdmin = user.role === 'admin';
+if (isAdmin) { ... }
+```
+
+### Quand commenter ?
+
+```javascript
+✅ Explication du "pourquoi", pas du "quoi"
+
+// On utilise setTimeout au lieu de setInterval car
+// on veut attendre que la requête précédente se termine
+// avant de lancer la suivante
+setTimeout(fetchData, POLL_INTERVAL);
+
+✅ Clarification de code complexe inévitable
+
+// Regex pour valider un email selon RFC 5322
+const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+✅ Avertissements importants
+
+// ATTENTION : Ne pas modifier sans mettre à jour la migration DB 2024-03-05
+const USER_TABLE_SCHEMA = { ... };
+
+✅ TODOs légitimes
+
+// TODO: Optimiser cette requête quand on aura plus de 10k users
+// Issue: #1234
+```
+
+### À éviter
+
+```javascript
+❌ Code commenté (utiliser Git à la place)
+// function oldImplementation() {
+//   return something;
+// }
+
+❌ Commentaires obsolètes
+// Returns user name
+function getUserEmail(id) { // Commentaire faux!
+  return db.findUserById(id).email;
+}
+
+❌ Journalisation dans les commentaires (Git le fait)
+// 2024-03-01 - Added validation
+// 2024-02-15 - Fixed bug
+// 2024-01-10 - Initial version
+```
+
+## 🎨 Formatage
+
+### Cohérence
+
+Le style doit être **cohérent** dans toute la codebase.
+
+```javascript
+✅ Utilisez un formatter automatique
+- Prettier
+- ESLint avec --fix
+- Code formatter de votre IDE
+```
+
+### Organisation verticale
+
+```javascript
+✅ Bon ordre
+// 1. Imports
+import { useState } from 'react';
+import { fetchUser } from './api';
+
+// 2. Constantes
+const MAX_USERS = 100;
+
+// 3. Types/Interfaces
+interface User {
+  id: number;
+  name: string;
+}
+
+// 4. Composant/Fonction principale
+export function UserList() {
+  // ...
+}
+
+// 5. Fonctions helper
+function sortUsers(users) {
+  // ...
+}
+```
+
+### Longueur des lignes
+
+```javascript
+❌ Trop long
+const user = database.query('SELECT id, name, email, age, address, phone, created_at, updated_at FROM users WHERE active = true AND role = "admin"');
+
+✅ Bien formaté
+const user = database.query(`
+  SELECT id, name, email, age, address, phone, created_at, updated_at
+  FROM users
+  WHERE active = true
+    AND role = "admin"
+`);
+```
+
+## 🏗️ Structures de contrôle
+
+### Éviter les imbrications profondes
+
+```javascript
+❌ Mauvais - Pyramide de la mort
+function processUser(user) {
+  if (user) {
+    if (user.isActive) {
+      if (user.hasPermission) {
+        if (user.email) {
+          sendEmail(user.email);
+        }
+      }
+    }
+  }
+}
+
+✅ Bon - Early returns
+function processUser(user) {
+  if (!user) return;
+  if (!user.isActive) return;
+  if (!user.hasPermission) return;
+  if (!user.email) return;
+
+  sendEmail(user.email);
+}
+```
+
+### Opérateurs ternaires simples
+
+```javascript
+❌ Mauvais - Ternaire imbriqué
+const message = user
+  ? user.isAdmin
+    ? user.hasPermission
+      ? 'Full access'
+      : 'Limited access'
+    : 'User access'
+  : 'No access';
+
+✅ Bon - if/else ou fonction
+function getAccessLevel(user) {
+  if (!user) return 'No access';
+  if (!user.isAdmin) return 'User access';
+  if (!user.hasPermission) return 'Limited access';
+  return 'Full access';
+}
+
+const message = getAccessLevel(user);
+```
+
+## 🗑️ Supprimez le code mort
+
+```javascript
+❌ Mauvais
+function calculateTotal(items) {
+  // const tax = 0.2; // Code commenté inutile
+  let total = 0;
+
+  for (let item of items) {
+    total += item.price;
+  }
+
+  // function oldCalculation() { ... } // Fonction jamais utilisée
+
+  return total;
+}
+
+✅ Bon
+function calculateTotal(items) {
+  let total = 0;
+
+  for (let item of items) {
+    total += item.price;
+  }
+
+  return total;
+}
+```
+
+## 📦 Gestion d'erreurs
+
+### Utilisez des exceptions, pas des codes d'erreur
+
+```javascript
+❌ Mauvais - Codes d'erreur
+function saveUser(user) {
+  const result = db.save(user);
+  if (result === -1) {
+    return { error: 'Database error' };
+  }
+  if (result === -2) {
+    return { error: 'Validation error' };
+  }
+  return { success: true };
+}
+
+// L'appelant doit vérifier
+const result = saveUser(user);
+if (result.error) { ... }
+
+✅ Bon - Exceptions
+function saveUser(user) {
+  try {
+    return db.save(user);
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      throw new UserValidationError('Invalid user data', { cause: error });
+    }
+    throw new DatabaseError('Failed to save user', { cause: error });
+  }
+}
+
+// L'appelant gère les erreurs
+try {
+  saveUser(user);
+} catch (error) {
+  handleError(error);
+}
+```
+
+### Fournissez du contexte
+
+```javascript
+❌ Mauvais
+throw new Error('Invalid');
+
+✅ Bon
+throw new Error(`Invalid email format: ${email}. Expected format: user@domain.com`);
+```
+
+## 🎯 Principes SOLID (version simple)
+
+### S - Single Responsibility (Responsabilité unique)
+
+Une classe/fonction ne doit avoir qu'une seule raison de changer.
+
+```javascript
+❌ Fait trop de choses
+class UserManager {
+  createUser() { }
+  deleteUser() { }
+  sendEmail() { }
+  generateReport() { }
+}
+
+✅ Responsabilités séparées
+class UserService {
+  createUser() { }
+  deleteUser() { }
+}
+
+class EmailService {
+  sendEmail() { }
+}
+
+class ReportService {
+  generateReport() { }
+}
+```
+
+### O - Open/Closed (Ouvert/Fermé)
+
+Ouvert à l'extension, fermé à la modification.
+
+```javascript
+❌ Modifie la classe existante
+class PaymentProcessor {
+  process(payment) {
+    if (payment.type === 'credit_card') { ... }
+    else if (payment.type === 'paypal') { ... }
+    else if (payment.type === 'crypto') { ... } // Nouveau type = modification
+  }
+}
+
+✅ Extension sans modification
+class PaymentProcessor {
+  process(paymentMethod) {
+    return paymentMethod.process();
+  }
+}
+
+class CreditCardPayment {
+  process() { ... }
+}
+
+class PayPalPayment {
+  process() { ... }
+}
+
+class CryptoPayment { // Nouveau type = nouvelle classe
+  process() { ... }
+}
+```
+
+## 📚 Ressources
+
+- [Clean Code by Robert C. Martin](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
+- [Refactoring by Martin Fowler](https://refactoring.com/)
+- [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+
+---
+
+> _"Clean code always looks like it was written by someone who cares."_ - Robert C. Martin

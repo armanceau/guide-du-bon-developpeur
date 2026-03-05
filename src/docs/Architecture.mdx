@@ -1,0 +1,614 @@
+---
+title: Guide du bon développeur/Architecture
+---
+
+# 🏗️ Architecture logicielle
+
+L'architecture logicielle définit la structure organisationnelle d'un système et les relations entre ses composants.
+
+## 🎯 Pourquoi une bonne architecture ?
+
+### Scalabilité
+
+- Capacité à gérer la croissance
+- Ajout de fonctionnalités sans tout casser
+- Performance maintenue
+
+### Maintenabilité
+
+- Code facile à comprendre
+- Modifications localisées
+- Tests plus simples
+
+### Flexibilité
+
+- Adaptation aux changements
+- Réutilisation de composants
+- Évolution technologique
+
+## 🏛️ Principes architecturaux
+
+### Separation of Concerns (Séparation des préoccupations)
+
+Divisez votre application en modules distincts avec des responsabilités claires.
+
+```javascript
+❌ Mauvais - Tout mélangé
+function UserComponent() {
+  const [users, setUsers] = useState([]);
+
+  // Logique API directement dans le composant
+  useEffect(() => {
+    fetch('https://api.example.com/users')
+      .then(res => res.json())
+      .then(data => setUsers(data));
+  }, []);
+
+  // Logique métier dans le composant
+  const activeUsers = users.filter(u => u.status === 'active');
+
+  // Rendu mélangé avec logique
+  return <div>{activeUsers.map(u => <div key={u.id}>{u.name}</div>)}</div>;
+}
+
+✅ Bon - Séparation claire
+// Services/API Layer
+export const userService = {
+  fetchUsers: () => fetch('https://api.example.com/users').then(r => r.json())
+};
+
+// Business Logic Layer
+export const filterActiveUsers = (users) =>
+  users.filter(u => u.status === 'active');
+
+// Presentation Layer
+function UserList({ users }) {
+  return (
+    <div>
+      {users.map(u => <UserItem key={u.id} user={u} />)}
+    </div>
+  );
+}
+
+// Container Component
+function UserContainer() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    userService.fetchUsers().then(setUsers);
+  }, []);
+
+  const activeUsers = filterActiveUsers(users);
+
+  return <UserList users={activeUsers} />;
+}
+```
+
+### Dependency Inversion (Inversion de dépendances)
+
+Dépendez d'abstractions, pas de concrétions.
+
+```javascript
+❌ Mauvais - Dépendance directe
+class UserService {
+  constructor() {
+    this.db = new MySQLDatabase(); // Dépendance concrète
+  }
+
+  getUser(id) {
+    return this.db.query(`SELECT * FROM users WHERE id = ${id}`);
+  }
+}
+
+✅ Bon - Dépendance abstraite
+// Interface (abstraction)
+interface Database {
+  query(sql: string): Promise<any>;
+}
+
+// Implémentations concrètes
+class MySQLDatabase implements Database {
+  query(sql: string) { ... }
+}
+
+class PostgresDatabase implements Database {
+  query(sql: string) { ... }
+}
+
+// Service dépend de l'abstraction
+class UserService {
+  constructor(private db: Database) { }
+
+  getUser(id: number) {
+    return this.db.query(`SELECT * FROM users WHERE id = ${id}`);
+  }
+}
+
+// Injection de dépendance
+const db = new PostgresDatabase(); // Facile à changer
+const userService = new UserService(db);
+```
+
+## 🎨 Patterns d'architecture
+
+### Layered Architecture (Architecture en couches)
+
+```
+┌─────────────────────────────┐
+│   Presentation Layer        │ ← UI Components
+├─────────────────────────────┤
+│   Application Layer         │ ← Use Cases, Workflows
+├─────────────────────────────┤
+│   Domain Layer              │ ← Business Logic
+├─────────────────────────────┤
+│   Data Access Layer         │ ← Database, APIs
+└─────────────────────────────┘
+```
+
+**Exemple React/Node.js:**
+
+```
+src/
+├── components/          # Presentation Layer
+│   ├── UserList.jsx
+│   └── UserForm.jsx
+├── hooks/              # Application Layer
+│   ├── useUsers.js
+│   └── useAuth.js
+├── services/           # Domain Layer
+│   ├── userService.js
+│   └── authService.js
+└── api/                # Data Access Layer
+    ├── userApi.js
+    └── authApi.js
+```
+
+### MVC (Model-View-Controller)
+
+```javascript
+// Model - Données et logique métier
+class UserModel {
+  constructor(data) {
+    this.id = data.id;
+    this.name = data.name;
+    this.email = data.email;
+  }
+
+  validate() {
+    return this.email.includes('@');
+  }
+
+  save() {
+    return api.saveUser(this);
+  }
+}
+
+// View - Interface utilisateur
+function UserView({ user, onUpdate }) {
+  return (
+    <div>
+      <h1>{user.name}</h1>
+      <p>{user.email}</p>
+      <button onClick={() => onUpdate(user)}>Update</button>
+    </div>
+  );
+}
+
+// Controller - Logique de contrôle
+class UserController {
+  constructor(model, view) {
+    this.model = model;
+    this.view = view;
+  }
+
+  updateUser(data) {
+    this.model = new UserModel(data);
+    if (this.model.validate()) {
+      this.model.save();
+      this.view render(this.model);
+    }
+  }
+}
+```
+
+### Repository Pattern
+
+Abstrait l'accès aux données.
+
+```javascript
+// Repository Interface
+class UserRepository {
+  findById(id) {
+    throw new Error("Not implemented");
+  }
+  findAll() {
+    throw new Error("Not implemented");
+  }
+  save(user) {
+    throw new Error("Not implemented");
+  }
+  delete(id) {
+    throw new Error("Not implemented");
+  }
+}
+
+// Implémentation API
+class ApiUserRepository extends UserRepository {
+  async findById(id) {
+    const response = await fetch(`/api/users/${id}`);
+    return response.json();
+  }
+
+  async findAll() {
+    const response = await fetch("/api/users");
+    return response.json();
+  }
+
+  async save(user) {
+    const response = await fetch("/api/users", {
+      method: user.id ? "PUT" : "POST",
+      body: JSON.stringify(user),
+    });
+    return response.json();
+  }
+
+  async delete(id) {
+    await fetch(`/api/users/${id}`, { method: "DELETE" });
+  }
+}
+
+// Implémentation LocalStorage (pour tests ou offline)
+class LocalStorageUserRepository extends UserRepository {
+  findById(id) {
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    return users.find((u) => u.id === id);
+  }
+
+  // ... autres méthodes
+}
+
+// Utilisation
+class UserService {
+  constructor(userRepository) {
+    this.repo = userRepository;
+  }
+
+  async getUser(id) {
+    return this.repo.findById(id);
+  }
+}
+
+// Facile de changer l'implémentation
+const repo = new ApiUserRepository();
+// const repo = new LocalStorageUserRepository(); // Pour les tests
+const service = new UserService(repo);
+```
+
+### Observer Pattern (Pub/Sub)
+
+```javascript
+// Event Bus
+class EventBus {
+  constructor() {
+    this.listeners = {};
+  }
+
+  on(event, callback) {
+    if (!this.listeners[event]) {
+      this.listeners[event] = [];
+    }
+    this.listeners[event].push(callback);
+  }
+
+  emit(event, data) {
+    if (this.listeners[event]) {
+      this.listeners[event].forEach((callback) => callback(data));
+    }
+  }
+
+  off(event, callback) {
+    if (this.listeners[event]) {
+      this.listeners[event] = this.listeners[event].filter(
+        (cb) => cb !== callback,
+      );
+    }
+  }
+}
+
+// Utilisation
+const eventBus = new EventBus();
+
+// Publisher
+class UserService {
+  createUser(userData) {
+    const user = api.createUser(userData);
+    eventBus.emit("user:created", user);
+    return user;
+  }
+}
+
+// Subscribers
+class EmailService {
+  constructor() {
+    eventBus.on("user:created", this.sendWelcomeEmail);
+  }
+
+  sendWelcomeEmail(user) {
+    console.log(`Sending welcome email to ${user.email}`);
+  }
+}
+
+class AnalyticsService {
+  constructor() {
+    eventBus.on("user:created", this.trackUserCreation);
+  }
+
+  trackUserCreation(user) {
+    console.log(`Tracking new user: ${user.id}`);
+  }
+}
+```
+
+## 📂 Organisation de projet
+
+### Feature-based structure (Recommandé)
+
+```
+src/
+├── features/
+│   ├── auth/
+│   │   ├── components/
+│   │   │   ├── LoginForm.jsx
+│   │   │   └── RegisterForm.jsx
+│   │   ├── hooks/
+│   │   │   └── useAuth.js
+│   │   ├── services/
+│   │   │   └── authService.js
+│   │   ├── types/
+│   │   │   └── auth.types.ts
+│   │   └── index.js
+│   ├── users/
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   ├── services/
+│   │   └── index.js
+│   └── products/
+│       └── ...
+├── shared/
+│   ├── components/
+│   │   ├── Button/
+│   │   └── Card/
+│   ├── hooks/
+│   ├── utils/
+│   └── types/
+├── App.jsx
+└── main.jsx
+```
+
+**Avantages:**
+
+- Tout ce qui concerne une feature est au même endroit
+- Facile de trouver et modifier
+- Scalable
+- Suppression de features simple
+
+### Type-based structure (Moins recommandé)
+
+```
+src/
+├── components/
+│   ├── LoginForm.jsx
+│   ├── UserList.jsx
+│   └── ProductCard.jsx
+├── services/
+│   ├── authService.js
+│   ├── userService.js
+│   └── productService.js
+├── hooks/
+├── utils/
+└── types/
+```
+
+## 🔄 State Management
+
+### Quand utiliser quoi ?
+
+```javascript
+// ✅ State local - Pour état spécifique au composant
+function Counter() {
+  const [count, setCount] = useState(0);
+  return <button onClick={() => setCount(count + 1)}>{count}</button>;
+}
+
+// ✅ Context - Pour état partagé par plusieurs composants
+const ThemeContext = createContext();
+
+function App() {
+  const [theme, setTheme] = useState("light");
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <Layout />
+    </ThemeContext.Provider>
+  );
+}
+
+// ✅ Redux/Zustand - Pour état global complexe
+// Redux pour applications larges et complexes
+// Zustand pour alternative plus simple
+
+// ❌ Éviter Context pour état qui change fréquemment
+// (Cause des re-renders inutiles)
+```
+
+### Architecture Flux/Redux
+
+```
+┌──────────┐      ┌──────────┐      ┌─────────┐      ┌───────┐
+│  Action  │ ───> │ Reducer  │ ───> │  Store  │ ───> │  View │
+└──────────┘      └──────────┘      └─────────┘      └───────┘
+     ▲                                                      │
+     └──────────────────────────────────────────────────────┘
+```
+
+## 🎯 Clean Architecture
+
+```
+┌─────────────────────────────────────────┐
+│         Frameworks & Drivers            │ ← External
+│  (UI, DB, Web, External Interfaces)     │
+├─────────────────────────────────────────┤
+│       Interface Adapters                │ ← Controllers,
+│   (Controllers, Presenters, Gateways)   │   Presenters
+├─────────────────────────────────────────┤
+│        Application Business Rules       │ ← Use Cases
+│           (Use Cases)                   │
+├─────────────────────────────────────────┤
+│      Enterprise Business Rules          │ ← Entities
+│           (Entities)                    │   (Core)
+└─────────────────────────────────────────┘
+```
+
+**Règle:** Les dépendances pointent vers l'intérieur.
+Le cœur (Entities) ne dépend de rien.
+
+## 🚀 Microservices vs Monolithe
+
+### Monolithe
+
+```
+┌─────────────────────────┐
+│     Application         │
+│  ┌─────┬─────┬─────┐   │
+│  │Users│Order│Pay  │   │
+│  └─────┴─────┴─────┘   │
+│         ↓               │
+│    ┌──────────┐         │
+│    │ Database │         │
+│    └──────────┘         │
+└─────────────────────────┘
+```
+
+**Avantages:**
+
+- Simple à développer et déployer
+- Transactions ACID
+- Pas de complexité réseau
+
+**Inconvénients:**
+
+- Scalabilité limitée
+- Déploiements risqués
+- Technologies couplées
+
+### Microservices
+
+```
+┌──────────┐  ┌──────────┐  ┌──────────┐
+│  Users   │  │  Orders  │  │ Payment  │
+│ Service  │  │ Service  │  │ Service  │
+│    ↓     │  │    ↓     │  │    ↓     │
+│   DB     │  │   DB     │  │   DB     │
+└──────────┘  └──────────┘  └──────────┘
+     ↓             ↓             ↓
+     └─────────────┴─────────────┘
+              API Gateway
+```
+
+**Avantages:**
+
+- Scalabilité indépendante
+- Technologies variées
+- Déploiements indépendants
+- Résilience
+
+**Inconvénients:**
+
+- Complexité opérationnelle
+- Transactions distribuées difficiles
+- Latence réseau
+
+## ✅ Bonnes pratiques
+
+### 1. Don't Repeat Yourself (DRY)
+
+```javascript
+❌ Répétition
+function getUserEmail(id) {
+  const response = await fetch(`/api/users/${id}`);
+  if (!response.ok) throw new Error('Failed');
+  return (await response.json()).email;
+}
+
+function getUserName(id) {
+  const response = await fetch(`/api/users/${id}`);
+  if (!response.ok) throw new Error('Failed');
+  return (await response.json()).name;
+}
+
+✅ Réutilisation
+async function fetchUser(id) {
+  const response = await fetch(`/api/users/${id}`);
+  if (!response.ok) throw new Error('Failed to fetch user');
+  return response.json();
+}
+
+function getUserEmail(id) {
+  return fetchUser(id).then(user => user.email);
+}
+
+function getUserName(id) {
+  return fetchUser(id).then(user => user.name);
+}
+```
+
+### 2. YAGNI (You Aren't Gonna Need It)
+
+N'ajoutez pas de fonctionnalités "au cas où".
+
+```javascript
+❌ Sur-ingénierie
+class User {
+  // Méthodes jamais utilisées
+  convertToXML() { }
+  exportToCSV() { }
+  generateQRCode() { }
+  encryptWithAES256() { }
+}
+
+✅ Seulement ce dont on a besoin
+class User {
+  toJSON() {
+    return { id: this.id, name: this.name };
+  }
+}
+```
+
+### 3. Keep It Simple, Stupid (KISS)
+
+```javascript
+❌ Complexe
+const result = array.reduce((acc, item) => {
+  return { ...acc, [item.id]: item };
+}, {});
+
+✅ Simple
+const result = Object.fromEntries(
+  array.map(item => [item.id, item])
+);
+
+// Ou encore plus simple si clarté prime
+const result = {};
+for (const item of array) {
+  result[item.id] = item;
+}
+```
+
+## 📚 Ressources
+
+- [Clean Architecture by Robert C. Martin](https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164)
+- [Patterns of Enterprise Application Architecture by Martin Fowler](https://martinfowler.com/books/eaa.html)
+- [Microservices Patterns by Chris Richardson](https://microservices.io/patterns/)
+
+---
+
+> _"Architecture is about the important stuff. Whatever that is."_ - Ralph Johnson
