@@ -7,30 +7,32 @@ const preview = {
         date: /Date$/i,
       },
     },
-
     a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
       test: "todo",
     },
-
     options: {
-      storySort: {
-        order: [
-          "Guide du bon développeur",
-          [
-            "Introduction",
-            "Code Reviews",
-            "Tests",
-            "Clean Code",
-            "Architecture",
-            "Git & Versionning",
-            "Documentation",
-          ],
-          "Components",
-          "*",
-        ],
+      storySort: (a, b) => {
+        const order = [
+          "Guide du bon développeur/Introduction",
+          "Guide du bon développeur/Tests",
+          "Guide du bon développeur/Code Reviews",
+          "Guide du bon développeur/Clean Code",
+          "Guide du bon développeur/Architecture",
+          "Guide du bon développeur/Git & Versionning",
+          "Guide du bon développeur/Documentation",
+        ];
+
+        const aTitle = a.title;
+        const bTitle = b.title;
+
+        const aIndex = order.indexOf(aTitle);
+        const bIndex = order.indexOf(bTitle);
+
+        if (aIndex >= 0 && bIndex >= 0) {
+          return aIndex - bIndex;
+        }
+
+        return 0;
       },
     },
   },

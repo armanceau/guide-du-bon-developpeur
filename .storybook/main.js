@@ -1,6 +1,10 @@
 /** @type { import('@storybook/react-vite').StorybookConfig } */
 const config = {
-  stories: ["../src/docs/**/*.mdx"],
+  stories: [
+    //👇 Your documentation written in MDX along with your stories goes here
+    "../src/**/*.mdx",
+    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+  ],
   addons: [
     "@storybook/addon-docs",
     "@chromatic-com/storybook",
