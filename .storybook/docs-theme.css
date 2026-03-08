@@ -23,16 +23,6 @@ body,
   padding-top: 0;
 }
 
-.sbdocs-content {
-  max-width: 840px;
-  margin: 0 auto;
-  background: var(--docs-surface);
-  border: 0;
-  border-radius: 0;
-  padding: 2rem;
-  box-shadow: none;
-}
-
 .sbdocs,
 .sbdocs-content {
   font-family: "Manrope", "Segoe UI", sans-serif;
@@ -46,29 +36,6 @@ body,
 .sbdocs-wrapper,
 .sbdocs-content {
   background: var(--docs-bg) !important;
-}
-
-/* Right-side docs TOC rail */
-.sbdocs-wrapper .sbdocs-toc,
-.sbdocs-wrapper .sbdocs-toc * {
-  background: transparent !important;
-  color: var(--docs-muted) !important;
-}
-
-.sbdocs-wrapper .sbdocs-toc a {
-  color: var(--docs-muted) !important;
-}
-
-.sbdocs-wrapper .sbdocs-toc a:hover,
-.sbdocs-wrapper .sbdocs-toc a[aria-current="true"] {
-  color: var(--docs-text) !important;
-}
-
-.sbdocs h1,
-.sbdocs h2,
-.sbdocs h3 {
-  letter-spacing: -0.03em;
-  font-weight: 700;
 }
 
 .sbdocs h1,
@@ -92,7 +59,6 @@ body,
 }
 
 .sbdocs h2 {
-  font-size: 1.35rem;
   margin-top: 2rem;
   margin-bottom: 0.7rem;
 }
@@ -129,29 +95,4 @@ body,
 .sbdocs code {
   font-family: "JetBrains Mono", Consolas, monospace;
   font-size: 0.9em;
-}
-
-.sbdocs p code,
-.sbdocs li code {
-  background: #18181b;
-  border: 1px solid #27272a;
-  border-radius: 6px;
-  padding: 0.15em 0.4em;
-  color: #fafafa;
-}
-
-.sbdocs blockquote {
-  margin: 1.25rem 0;
-  padding: 0.75rem 1rem;
-  border-left: 2px solid #3f3f46;
-  background: #111111;
-  color: #d4d4d8;
-}
-
-@media (max-width: 760px) {
-  .sbdocs-content {
-    border-radius: 10px;
-    padding: 1.3rem 0.95rem;
-    margin: 0 0.5rem;
-  }
 }

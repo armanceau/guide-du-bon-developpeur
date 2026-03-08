@@ -24,7 +24,23 @@ const preview: Preview = {
     },
     options: {
       showPanel: false,
+      showToolbar: true,
     },
+  },
+  globalTypes: {
+    locale: {
+      description: "Internationalization locale",
+      toolbar: {
+        icon: "globe",
+        items: [
+          { value: "en", right: "🇺🇸", title: "English" },
+          { value: "fr", right: "🇫🇷", title: "Français" },
+        ],
+      },
+    },
+  },
+  initialGlobals: {
+    locale: "fr",
   },
 };
 

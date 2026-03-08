@@ -22,4 +22,11 @@ addons.setConfig({
     inputBorderRadius: 8,
   }),
   panelPosition: "right",
+  toolbar: {
+    title: { hidden: true },
+    zoom: { hidden: true },
+    eject: { hidden: true },
+    copy: { hidden: true },
+    fullscreen: { hidden: true },
+  },
 });
