@@ -1,10 +1,7 @@
 import type { StorybookConfig } from "@storybook/react-vite";
 
 const config: StorybookConfig = {
-  stories: [
-    "../src/**/*.mdx",
-    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-  ],
+  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
     "@storybook/addon-docs",
     "@chromatic-com/storybook",
@@ -15,7 +12,6 @@ const config: StorybookConfig = {
     options: {},
   },
   docs: {
-    autodocs: "tag",
     defaultName: "Documentation",
   },
 };
