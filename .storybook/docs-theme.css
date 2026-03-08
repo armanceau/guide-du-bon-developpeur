@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+:root {
+  --docs-bg: #0a0a0a;
+  --docs-surface: #0a0a0a;
+  --docs-border: #18181b;
+  --docs-text: #fafafa;
+  --docs-muted: #a1a1aa;
+  --docs-accent: #fafafa;
+  --docs-code-bg: #111111;
+  --docs-code-text: #fafafa;
+}
+
+html,
+body,
+#storybook-root {
+  background: var(--docs-bg) !important;
+  color: var(--docs-text);
+}
+
+.sbdocs-wrapper {
+  background: var(--docs-bg);
+  padding-top: 0;
+}
+
+.sbdocs-content {
+  max-width: 840px;
+  margin: 0 auto;
+  background: var(--docs-surface);
+  border: 0;
+  border-radius: 0;
+  padding: 2rem;
+  box-shadow: none;
+}
+
+.sbdocs,
+.sbdocs-content {
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  color: var(--docs-text);
+}
+
+/* Force every docs container/preview shell to stay dark. */
+#storybook-docs,
+.sbdocs-preview,
+.docs-story,
+.sbdocs-wrapper,
+.sbdocs-content {
+  background: var(--docs-bg) !important;
+}
+
+/* Right-side docs TOC rail */
+.sbdocs-wrapper .sbdocs-toc,
+.sbdocs-wrapper .sbdocs-toc * {
+  background: transparent !important;
+  color: var(--docs-muted) !important;
+}
+
+.sbdocs-wrapper .sbdocs-toc a {
+  color: var(--docs-muted) !important;
+}
+
+.sbdocs-wrapper .sbdocs-toc a:hover,
+.sbdocs-wrapper .sbdocs-toc a[aria-current="true"] {
+  color: var(--docs-text) !important;
+}
+
+.sbdocs h1,
+.sbdocs h2,
+.sbdocs h3 {
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+.sbdocs h1,
+.sbdocs h2,
+.sbdocs h3,
+.sbdocs h4,
+.sbdocs h5,
+.sbdocs h6,
+.sbdocs-content h1,
+.sbdocs-content h2,
+.sbdocs-content h3,
+.sbdocs-content h4,
+.sbdocs-content h5,
+.sbdocs-content h6 {
+  color: #fafafa !important;
+}
+
+.sbdocs h1 {
+  font-size: clamp(1.9rem, 3vw, 2.4rem);
+  margin-bottom: 0.7rem;
+}
+
+.sbdocs h2 {
+  font-size: 1.35rem;
+  margin-top: 2rem;
+  margin-bottom: 0.7rem;
+}
+
+.sbdocs p,
+.sbdocs li {
+  color: var(--docs-muted);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.sbdocs a {
+  color: var(--docs-accent);
+  text-decoration: underline;
+  text-decoration-color: #3f3f46;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.sbdocs hr {
+  border: 0;
+  border-top: 1px solid var(--docs-border);
+  margin: 1.6rem 0;
+}
+
+.sbdocs pre {
+  background: var(--docs-code-bg) !important;
+  color: var(--docs-code-text);
+  border-radius: 10px !important;
+  padding: 1rem 1.1rem !important;
+  border: 1px solid #27272a;
+}
+
+.sbdocs code {
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 0.9em;
+}
+
+.sbdocs p code,
+.sbdocs li code {
+  background: #18181b;
+  border: 1px solid #27272a;
+  border-radius: 6px;
+  padding: 0.15em 0.4em;
+  color: #fafafa;
+}
+
+.sbdocs blockquote {
+  margin: 1.25rem 0;
+  padding: 0.75rem 1rem;
+  border-left: 2px solid #3f3f46;
+  background: #111111;
+  color: #d4d4d8;
+}
+
+@media (max-width: 760px) {
+  .sbdocs-content {
+    border-radius: 10px;
+    padding: 1.3rem 0.95rem;
+    margin: 0 0.5rem;
+  }
+}
