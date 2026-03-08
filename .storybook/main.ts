@@ -1,7 +1,7 @@
-/** @type { import('@storybook/react-vite').StorybookConfig } */
-const config = {
+import type { StorybookConfig } from "@storybook/react-vite";
+
+const config: StorybookConfig = {
   stories: [
-    //👇 Your documentation written in MDX along with your stories goes here
     "../src/**/*.mdx",
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
@@ -15,7 +15,9 @@ const config = {
     options: {},
   },
   docs: {
-    autodocs: false,
+    autodocs: "tag",
+    defaultName: "Documentation",
   },
 };
+
 export default config;
