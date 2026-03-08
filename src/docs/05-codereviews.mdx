@@ -1,12 +1,17 @@
 import { Meta } from "@storybook/addon-docs/blocks";
+import { Checklist } from "../components/Checklist";
 
 <Meta title="Guide du bon developpeur/Code Review" />
 
-# 🔍 Code Reviews
+# Code Reviews
 
-Les revues de code sont un processus essentiel pour maintenir la qualité du code et favoriser le partage de connaissances au sein d'une équipe.
+Les revues de code constituent un processus essentiel pour garantir la qualité du code et favoriser le partage
+de connaissances au sein d’une équipe.
 
-## 🎯 Pourquoi faire des code reviews ?
+Bien qu’elles puissent parfois paraître longues ou fastidieuses, elles
+jouent un rôle clé dans l’amélioration continue du code et des pratiques de développement.
+
+## Pourquoi faire des code reviews ?
 
 ### Amélioration de la qualité
 
@@ -20,6 +25,7 @@ Les revues de code sont un processus essentiel pour maintenir la qualité du cod
 - Transfert de compétences entre développeurs
 - Familiarisation avec différentes parties du codebase
 - Apprentissage de nouvelles techniques
+- Meilleur compéhension du métier
 
 ### Cohésion d'équipe
 
@@ -27,20 +33,23 @@ Les revues de code sont un processus essentiel pour maintenir la qualité du cod
 - Communication améliorée
 - Culture d'amélioration continue
 
-## ✅ Bonnes pratiques pour soumettre du code
+## Bonnes pratiques pour soumettre du code
 
-### 1. Gardez les PR petites et ciblées
+### 1. Gardez les MR/PR petites et ciblées
 
 ```
-❌ Mauvais : PR avec 50 fichiers modifiés, 2000 lignes changées
-✅ Bon : PR avec 5-10 fichiers, 200-300 lignes max
+❌ PR avec 50 fichiers modifiés, 2000 lignes changées
+✅ PR avec 5-10 fichiers, 200-300 lignes max
 ```
 
 ### 2. Rédigez une description claire
 
 Chaque PR devrait contenir :
 
-- **Contexte** : Pourquoi ce changement ?
+- **Nom de la branche** : Utiliser une convention claire, par exemple : `feat/Nom_ticket_courte_description_en_5_mots`
+- **Titre de la PR** : Une phrase courte qui résume le changement
+- **Contexte** : Un résumé rapide du ticket ou du problème traité
+- **Description** : Pourquoi ce changement ?
 - **Changements** : Qu'est-ce qui a été modifié ?
 - **Tests** : Comment vérifier que ça fonctionne ?
 - **Screenshots** : Si pertinent (UI)
@@ -52,27 +61,9 @@ Chaque PR devrait contenir :
 - Vérifiez que les tests passent
 - Supprimez les console.log et code commenté
 
-### 4. Fournissez du contexte
+## Bonnes pratiques pour relire du code
 
-```markdown
-## Problème
-
-L'utilisateur ne pouvait pas se déconnecter sur mobile
-
-## Solution
-
-Ajout d'un bouton de déconnexion dans le menu mobile
-
-## Tests
-
-- ✅ Test unitaire du bouton
-- ✅ Test E2E du flux de déconnexion
-- ✅ Testé sur iOS et Android
-```
-
-## 🔎 Bonnes pratiques pour reviewer
-
-### 1. Soyez constructif et bienveillant
+Soyez constructif et bienveillant :
 
 ```
 ❌ "Ce code est nul"
@@ -82,133 +73,63 @@ Ajout d'un bouton de déconnexion dans le menu mobile
 ✅ "J'ai une suggestion qui pourrait améliorer la lisibilité..."
 ```
 
-### 2. Distinguez les niveaux de criticité
+## Etapes de la review
 
-```
-🔴 BLOCKING : Problème critique (bug, faille de sécurité)
-🟡 SUGGESTION : Amélioration optionnelle
-💡 QUESTION : Demande de clarification
-✨ COMPLIMENT : Soulignez le bon code !
-```
+- Regarder l’architecture : les fichiers sont-ils au bon endroit ? La structure respecte-t-elle l’architecture du projet ?
+- Lire le ticket : comprendre le besoin fonctionnel et les attentes décrites.
+- Lire les tests : vérifier que le comportement attendu est bien couvert et comprendre la logique métier.
+- Lire l’implémentation : le code répond-il correctement au besoin métier ?
+- Vérifier la lisibilité : les noms de fonctions, variables et composants sont-ils explicites ?
+- Évaluer la simplicité : le code est-il clair et maintenable ou pourrait-il être simplifié ?
+- Vérifier les cas limites : les erreurs, cas particuliers ou états inattendus sont-ils bien gérés ?
+- Contrôler la cohérence : le code respecte-t-il les conventions et les pratiques du projet ?
 
-### 3. Concentrez-vous sur le code, pas sur la personne
-
-```
-❌ "Tu as fait une erreur stupide"
-✅ "Cette logique pourrait causer un bug si..."
-```
-
-### 4. Expliquez le "pourquoi"
-
-```
-❌ "Change ça"
-✅ "Cette approche pourrait causer des problèmes de mémoire
-    car elle crée une nouvelle instance à chaque render.
-    Considère utiliser useMemo ici."
-```
-
-### 5. Proposez des solutions
-
-```
-❌ "C'est pas bien"
-✅ "Cette approche fonctionne, mais on pourrait simplifier avec :
-    [code example]"
-```
-
-## ⏱️ Timing des reviews
-
-### Réactivité
+## Timing des reviews
 
 - Objectif : reviewer dans les **2-4 heures**
-- Maximum acceptable : **24 heures**
 - Bloquez du temps dédié aux reviews
+- Options : - Le matin : avant de démarrer ses tâches de la journée (préférence) - Avant d'aller manger pour finir sa matinée - Après avoir finit la pause déjeuner avant de se remettre dans son travail - En fin de journée
 
-### Ordre de priorité
-
-1. Hotfixes (immédiat)
-2. PR bloquantes
-3. PR normales
-4. Refactoring / non urgent
-
-## 📋 Checklist du reviewer
+## Checklist du reviewer
 
 ### Fonctionnalité
 
-- [ ] Le code fait ce qu'il est censé faire
-- [ ] Les edge cases sont gérés
-- [ ] Pas de régression introduite
+<Checklist
+  items={[
+    "Le code fait ce qu'il est censé faire",
+    "Pas de régression introduite",
+  ]}
+/>
 
 ### Qualité du code
 
-- [ ] Code lisible et compréhensible
-- [ ] Noms de variables/fonctions explicites
-- [ ] Pas de duplication inutile
-- [ ] Respect des conventions du projet
+<Checklist
+  items={[
+    "Code lisible et compréhensible",
+    "Noms de variables/fonctions explicites",
+    "Pas de duplication inutile",
+    "Respect des conventions du projet",
+  ]}
+/>
 
 ### Tests
 
-- [ ] Tests présents et pertinents
-- [ ] Couverture suffisante
-- [ ] Tests passent
+<Checklist
+  items={[
+    "Tests présents et pertinents",
+    "Couverture suffisante",
+    "Tests passent",
+  ]}
+/>
 
-### Performance
+## Outils recommandés
 
-- [ ] Pas de problèmes de performance évidents
-- [ ] Requêtes optimisées
-- [ ] Pas de memory leaks
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [SonarQube](https://www.sonarsource.com/fr/products/sonarqube/)
+- [Gitleaks](https://github.com/gitleaks/gitleaks)
 
-### Sécurité
-
-- [ ] Pas de failles de sécurité
-- [ ] Validation des inputs
-- [ ] Données sensibles protégées
-
-## 🛠️ Outils recommandés
-
-### Extensions Git
-
-- Conventional Commits
-- Git Lens (VS Code)
-- GitHub/GitLab CLI
-
-### Analyse statique
-
-- ESLint
-- Prettier
-- SonarQube
-- CodeClimate
-
-## 💬 Templates de commentaires
-
-### Demander une clarification
-
-```
-💡 Peux-tu expliquer pourquoi tu as choisi cette approche ?
-Je me demandais si [alternative] pourrait aussi fonctionner ?
-```
-
-### Suggérer une amélioration
-
-```
-🟡 SUGGESTION : Cette fonction est un peu longue.
-Que penses-tu de l'extraire en plusieurs fonctions plus petites ?
-```
-
-### Signaler un problème
-
-```
-🔴 BLOCKING : Cette condition ne gère pas le cas où user
-est null, ce qui pourrait crasher l'app.
-```
-
-### Donner un compliment
-
-```
-✨ Super idée d'utiliser cette pattern ! C'est beaucoup plus
-lisible qu'avant.
-```
-
-## 📚 Ressources
+## Ressources
 
 - [Google Engineering Practices](https://google.github.io/eng-practices/review/)
 - [Thoughtbot Code Review Guide](https://github.com/thoughtbot/guides/tree/main/code-review)

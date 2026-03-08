@@ -5,8 +5,8 @@ const preview: Preview = {
   parameters: {
     backgrounds: {
       options: {
-        dark: { name: "dark", value: "#0a0a0a" }
-      }
+        dark: { name: "dark", value: "#0a0a0a" },
+      },
     },
     controls: {
       matchers: {
@@ -44,8 +44,8 @@ const preview: Preview = {
     locale: "fr",
 
     backgrounds: {
-      value: "dark"
-    }
+      value: "dark",
+    },
   },
 };
 

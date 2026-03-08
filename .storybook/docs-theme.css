@@ -7,8 +7,9 @@
   --docs-text: #fafafa;
   --docs-muted: #a1a1aa;
   --docs-accent: #fafafa;
-  --docs-code-bg: #111111;
-  --docs-code-text: #fafafa;
+  --docs-code-bg: #18181b;
+  --docs-code-text: #e4e4e7;
+  --docs-code-border: #27272a;
 }
 
 html,
@@ -29,7 +30,6 @@ body,
   color: var(--docs-text);
 }
 
-/* Force every docs container/preview shell to stay dark. */
 #storybook-docs,
 .sbdocs-preview,
 .docs-story,
@@ -86,13 +86,56 @@ body,
 
 .sbdocs pre {
   background: var(--docs-code-bg) !important;
-  color: var(--docs-code-text);
-  border-radius: 10px !important;
-  padding: 1rem 1.1rem !important;
-  border: 1px solid #27272a;
+  color: var(--docs-code-text) !important;
+  border-radius: 8px !important;
+  padding: 0.75rem 1rem !important;
+  border: 1px solid var(--docs-code-border) !important;
+  margin: 1rem 0 !important;
+  overflow-x: auto;
+}
+
+.sbdocs pre code {
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  color: inherit !important;
+}
+
+.sbdocs pre > div {
+  position: relative;
+  overflow: hidden;
+  background: transparent !important;
+  margin: 0px !important;
+  border: none !important;
+  border-radius: 4px;
+  box-shadow: none !important;
+}
+
+.sbdocs pre > div pre {
+  border: none !important;
+  margin: 0 !important;
 }
 
 .sbdocs code {
   font-family: "JetBrains Mono", Consolas, monospace;
   font-size: 0.9em;
+  background: var(--docs-code-bg);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  color: var(--docs-code-text);
+  border: 1px solid var(--docs-code-border);
+}
+
+.sbdocs :not(pre) > code {
+  font-size: 0.875em;
+}
+
+.sbdocs :not(pre) > code,
+.sbdocs p code,
+.sbdocs li code,
+.sbdocs td code,
+.sbdocs th code {
+  background: var(--docs-code-bg) !important;
+  color: var(--docs-code-text) !important;
+  border: 1px solid var(--docs-code-border) !important;
 }
