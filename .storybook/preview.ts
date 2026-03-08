@@ -4,8 +4,9 @@ import type { Preview } from "@storybook/react";
 const preview: Preview = {
   parameters: {
     backgrounds: {
-      default: "dark",
-      values: [{ name: "dark", value: "#0a0a0a" }],
+      options: {
+        dark: { name: "dark", value: "#0a0a0a" }
+      }
     },
     controls: {
       matchers: {
@@ -41,6 +42,10 @@ const preview: Preview = {
   },
   initialGlobals: {
     locale: "fr",
+
+    backgrounds: {
+      value: "dark"
+    }
   },
 };
 
