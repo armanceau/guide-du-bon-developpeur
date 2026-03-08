@@ -139,3 +139,102 @@ body,
   color: var(--docs-code-text) !important;
   border: 1px solid var(--docs-code-border) !important;
 }
+
+.sbdocs-toc-wrapper,
+div[class*="toc"],
+aside[class*="toc"],
+nav[class*="toc"],
+[data-toc],
+.css-1xdhyk6,
+.css-ojsz8s,
+.css-175z9gt {
+  width: 320px !important;
+  max-width: 320px !important;
+  min-width: 320px !important;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  border-left: none !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+.sbdocs-toc,
+div[class*="toc"] > nav,
+div[class*="toc"] ul,
+aside[class*="toc"] ul,
+nav[class*="toc"] ul,
+.toc-wrapper,
+.toc-list {
+  border-left: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-right: 0 !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+.sbdocs-toc li,
+div[class*="toc"] li,
+aside[class*="toc"] li,
+nav[class*="toc"] li,
+.toc-list-item {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  border-left: none !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  max-width: 100% !important;
+}
+
+.sbdocs-toc a,
+div[class*="toc"] a,
+aside[class*="toc"] a,
+nav[class*="toc"] a,
+.toc-link {
+  padding-left: 0 !important;
+  padding-right: 0.5rem !important;
+  border-left: none !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  display: block !important;
+  overflow-x: hidden !important;
+  text-overflow: clip !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Remove white border on selected/active TOC items */
+.sbdocs-toc a:hover,
+.sbdocs-toc a:focus,
+.sbdocs-toc a:active,
+.sbdocs-toc a[aria-current],
+.sbdocs-toc li.active a,
+div[class*="toc"] a:hover,
+div[class*="toc"] a:focus,
+div[class*="toc"] a:active,
+div[class*="toc"] a[aria-current],
+div[class*="toc"] li.active a,
+aside[class*="toc"] a:hover,
+aside[class*="toc"] a:focus,
+aside[class*="toc"] a:active,
+aside[class*="toc"] a[aria-current],
+aside[class*="toc"] li.active a,
+nav[class*="toc"] a:hover,
+nav[class*="toc"] a:focus,
+nav[class*="toc"] a:active,
+nav[class*="toc"] a[aria-current],
+nav[class*="toc"] li.active a,
+.toc-link:hover,
+.toc-link:focus,
+.toc-link:active,
+.is-active-link,
+.toc-list-item.is-active-li > a {
+  border-left: none !important;
+  padding-left: 0 !important;
+  font-weight: normal !important;
+}
