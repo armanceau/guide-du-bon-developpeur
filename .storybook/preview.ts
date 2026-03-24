@@ -22,6 +22,9 @@ const preview: Preview = {
         headingSelector: "h2",
         title: "Sur cette page",
       },
+      source: {
+        dark: true,
+      },
     },
     options: {
       showPanel: false,

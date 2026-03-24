@@ -8,7 +8,7 @@
   --docs-muted: #a1a1aa;
   --docs-accent: #fafafa;
   --docs-code-bg: #18181b;
-  --docs-code-text: #e4e4e7;
+  --docs-code-text: #f8fafc;
   --docs-code-border: #27272a;
 }
 
@@ -98,7 +98,176 @@ body,
   background: transparent !important;
   padding: 0 !important;
   border: none !important;
-  color: inherit !important;
+  color: var(--docs-code-text) !important;
+}
+
+/* Dark syntax palette for fenced code blocks (JS/TS + generic Prism/HLJS tokens). */
+.sbdocs pre code {
+  color: var(--docs-code-text) !important;
+}
+
+/* Storybook source blocks can render outside simple .sbdocs pre code paths. */
+#storybook-docs .docblock-source pre,
+#storybook-docs .docblock-source pre code,
+#storybook-docs pre.prismjs,
+#storybook-docs pre.prismjs code,
+#storybook-docs pre[class*="language-"],
+#storybook-docs pre[class*="language-"] code,
+.sbdocs .docblock-source pre,
+.sbdocs .docblock-source pre code,
+.sbdocs pre.prismjs,
+.sbdocs pre.prismjs code,
+.sbdocs pre[class*="language-"],
+.sbdocs pre[class*="language-"] code {
+  color: var(--docs-code-text) !important;
+}
+
+.sbdocs pre code .token.comment,
+.sbdocs pre code .token.prolog,
+.sbdocs pre code .token.doctype,
+.sbdocs pre code .token.cdata,
+.sbdocs pre code .hljs-comment,
+.sbdocs pre code .hljs-quote {
+  color: #94a3b8 !important;
+}
+
+#storybook-docs .docblock-source .token.comment,
+#storybook-docs .docblock-source .token.prolog,
+#storybook-docs .docblock-source .token.doctype,
+#storybook-docs .docblock-source .token.cdata,
+#storybook-docs .docblock-source .hljs-comment,
+#storybook-docs .docblock-source .hljs-quote {
+  color: #94a3b8 !important;
+}
+
+.sbdocs pre code .token.punctuation,
+.sbdocs pre code .token.operator,
+.sbdocs pre code .hljs-operator {
+  color: #e2e8f0 !important;
+}
+
+#storybook-docs .docblock-source .token.punctuation,
+#storybook-docs .docblock-source .token.operator,
+#storybook-docs .docblock-source .hljs-operator {
+  color: #e2e8f0 !important;
+}
+
+.sbdocs pre code .token.keyword,
+.sbdocs pre code .token.control,
+.sbdocs pre code .token.module,
+.sbdocs pre code .token.atrule,
+.sbdocs pre code .token.important,
+.sbdocs pre code .hljs-keyword,
+.sbdocs pre code .hljs-selector-tag {
+  color: #facc15 !important;
+}
+
+#storybook-docs .docblock-source .token.keyword,
+#storybook-docs .docblock-source .token.control,
+#storybook-docs .docblock-source .token.module,
+#storybook-docs .docblock-source .token.atrule,
+#storybook-docs .docblock-source .token.important,
+#storybook-docs .docblock-source .hljs-keyword,
+#storybook-docs .docblock-source .hljs-selector-tag {
+  color: #facc15 !important;
+}
+
+.sbdocs pre code .token.string,
+.sbdocs pre code .token.char,
+.sbdocs pre code .token.attr-value,
+.sbdocs pre code .token.regex,
+.sbdocs pre code .hljs-string,
+.sbdocs pre code .hljs-regexp {
+  color: #86efac !important;
+}
+
+#storybook-docs .docblock-source .token.string,
+#storybook-docs .docblock-source .token.char,
+#storybook-docs .docblock-source .token.attr-value,
+#storybook-docs .docblock-source .token.regex,
+#storybook-docs .docblock-source .hljs-string,
+#storybook-docs .docblock-source .hljs-regexp {
+  color: #86efac !important;
+}
+
+.sbdocs pre code .token.number,
+.sbdocs pre code .token.boolean,
+.sbdocs pre code .token.constant,
+.sbdocs pre code .token.symbol,
+.sbdocs pre code .hljs-number,
+.sbdocs pre code .hljs-literal {
+  color: #fdba74 !important;
+}
+
+#storybook-docs .docblock-source .token.number,
+#storybook-docs .docblock-source .token.boolean,
+#storybook-docs .docblock-source .token.constant,
+#storybook-docs .docblock-source .token.symbol,
+#storybook-docs .docblock-source .hljs-number,
+#storybook-docs .docblock-source .hljs-literal {
+  color: #fdba74 !important;
+}
+
+.sbdocs pre code .token.function,
+.sbdocs pre code .token.method,
+.sbdocs pre code .token.function-variable,
+.sbdocs pre code .hljs-function,
+.sbdocs pre code .hljs-title {
+  color: #67e8f9 !important;
+}
+
+#storybook-docs .docblock-source .token.function,
+#storybook-docs .docblock-source .token.method,
+#storybook-docs .docblock-source .token.function-variable,
+#storybook-docs .docblock-source .hljs-function,
+#storybook-docs .docblock-source .hljs-title {
+  color: #67e8f9 !important;
+}
+
+.sbdocs pre code .token.parameter,
+.sbdocs pre code .token.variable,
+.sbdocs pre code .token.property,
+.sbdocs pre code .token.class-name,
+.sbdocs pre code .token.builtin,
+.sbdocs pre code .hljs-params,
+.sbdocs pre code .hljs-variable,
+.sbdocs pre code .hljs-attr,
+.sbdocs pre code .hljs-property,
+.sbdocs pre code .hljs-type {
+  color: #f9fafb !important;
+}
+
+#storybook-docs .docblock-source .token.parameter,
+#storybook-docs .docblock-source .token.variable,
+#storybook-docs .docblock-source .token.property,
+#storybook-docs .docblock-source .token.class-name,
+#storybook-docs .docblock-source .token.builtin,
+#storybook-docs .docblock-source .hljs-params,
+#storybook-docs .docblock-source .hljs-variable,
+#storybook-docs .docblock-source .hljs-attr,
+#storybook-docs .docblock-source .hljs-property,
+#storybook-docs .docblock-source .hljs-type {
+  color: #f9fafb !important;
+}
+
+.sbdocs pre code .token.tag,
+.sbdocs pre code .token.selector,
+.sbdocs pre code .token.attr-name,
+.sbdocs pre code .hljs-tag,
+.sbdocs pre code .hljs-name,
+.sbdocs pre code .hljs-selector-class,
+.sbdocs pre code .hljs-selector-id {
+  color: #5eead4 !important;
+}
+
+#storybook-docs .docblock-source .token.tag,
+#storybook-docs .docblock-source .token.selector,
+#storybook-docs .docblock-source .token.attr-name,
+#storybook-docs .docblock-source .hljs-tag,
+#storybook-docs .docblock-source .hljs-name,
+#storybook-docs .docblock-source .hljs-selector-class,
+#storybook-docs .docblock-source .hljs-selector-id {
+  color: #5eead4 !important;
 }
 
 .sbdocs pre > div {
