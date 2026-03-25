@@ -42,7 +42,17 @@ Les tests sont essentiels pour garantir la qualité, la fiabilité et la mainten
   </figcaption>
 </figure>
 
-_**// TODO ajouter combien de temps il faut pour maintenir ces tests.**_
+### Coût de maintenance
+
+- Tests unitaires : quelques minutes ;
+- Tests d'intégration : quelques heures - demie journée ;
+- Tests e2e : demie journée - plusieurs jours ;
+
+<Callout variant="info" title="À retenir">
+    Plus un test est proche de l’utilisateur (E2E), plus il est coûteux à maintenir.
+
+    À l’inverse, plus il est isolé (unitaire), plus il est rapide et stable.
+</Callout>
 
 ### Tests unitaires (80%)
 
@@ -54,7 +64,7 @@ Testent une unité de code isolée (fonction, méthode, composant)
 
 Ils sont moyennement nombreux.
 
-Testent l'interaction entre plusieurs unités
+Testent l'interaction entre plusieurs unités.
 
 ### Tests E2E (5%)
 
