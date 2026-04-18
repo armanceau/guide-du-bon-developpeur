@@ -1,0 +1,118 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { Callout } from "../components/Callout";
+
+<Meta title="Guide du bon developpeur/Git" />
+
+# Git & Versionning
+
+Git est l'outil de versioning le plus utilisé. Le maîtriser reste indispensable pour travailler en équipe et sécuriser l'historique du projet.
+
+## Pourquoi utiliser Git ?
+
+### Historique complet
+
+- Savoir qui a fait quoi et quand
+- Revenir en arrière si nécessaire
+- Comprendre l'évolution du code
+
+### Collaboration
+
+- Travail en équipe facilité
+- Branches pour isoler le travail
+- Résolution de conflits
+
+### Sauvegarde
+
+- Code sauvegardé sur le serveur distant
+- Protection contre la perte de données
+
+## Commits
+
+### Format recommandé
+
+```text
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+### Types de commits
+
+```text
+feat: nouvelle fonctionnalité
+fix: correction de bug
+refactor: refactoring
+chore: tâches de maintenance
+revert: annulation d'un commit précédent
+```
+
+<Callout variant="warning" title="Attention">
+  _Pull/Rebase régulièrement (au moins une fois par jour) pour éviter les
+  conflits importants._
+</Callout>
+
+### Bonnes pratiques de commits
+
+#### Commits atomiques
+
+- Un changement logique par commit
+- Des messages courts mais explicites
+- Un commit doit pouvoir être relu et compris seul
+
+#### Commits fréquents
+
+- Commiter après chaque fonctionnalité complète
+- Commiter après chaque bug fix
+- Éviter les commits fourre-tout de fin de journée
+
+#### Tester avant de commiter
+
+1. Faire les changements
+2. Tester localement
+3. Relire les changements avec `git diff`
+4. Stager les fichiers
+5. Commit
+6. Push
+
+## Branches et reviews
+
+### Nommage de branche
+
+- `feat/Nom_ticket_courte_description_en_5_mots`
+- `fix/Nom_ticket_courte_description_en_5_mots`
+
+### Pull request
+
+Une bonne PR contient :
+
+- Le contexte du ticket
+- Le pourquoi du changement
+- La liste des modifications
+- Les tests réalisés
+- Les captures d'écran si nécessaire
+
+<Callout variant="warning" title="Attention">
+  _Si vous êtes en Agile, un ticket = une PR/MR._
+</Callout>
+
+## Merge vs Rebase
+
+- Merge: fusionne les branches avec un commit de merge
+- Rebase: rejoue les commits au-dessus de la branche cible
+
+### Quand préférer quoi ?
+
+- Merge pour préserver le contexte de travail d'équipe
+- Rebase pour garder un historique linéaire sur une branche locale
+
+## Ce qu'il faut éviter
+
+- Les commits intitulés `update`, `wip` ou `fix stuff`
+- Les branches qui vivent trop longtemps sans synchronisation
+- Les PR trop grosses qui mélangent plusieurs sujets
+
+---
+
+> Un bon historique Git raconte une histoire lisible du produit.
