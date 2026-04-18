@@ -1,0 +1,91 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { Method } from "../components/Method";
+
+<Meta title="Guide du bon developpeur/REST API" />
+
+# REST API
+
+Une API REST doit rester simple, explicite et prévisible.
+
+## Les 5 principes REST
+
+### Client-server
+
+- Séparation entre client et serveur
+- Permet la portabilité et la scalabilité
+
+### Stateless
+
+- Chaque requête contient toutes les informations nécessaires
+- Le serveur ne dépend pas d'un état gardé entre les appels
+
+### Cacheable
+
+- Les réponses peuvent être mises en cache
+- Améliore les performances
+
+### Système par couche
+
+- La communication peut passer par des intermédiaires
+- Permet d'ajouter des proxies, gateways ou reverse proxies
+
+### Interface uniforme
+
+- Ressources identifiées par URI
+- Représentation manipulable en JSON ou XML
+- Messages auto-descriptifs
+- Liens dans les réponses pour HATEOAS
+
+## HTTP
+
+### Méthodes
+
+<Method bg="#61affe">GET</Method> : récupérer
+
+<Method bg="#49cc90">POST</Method> : envoyer et créer une ressource
+
+<Method bg="#fca130">PUT</Method> : remplacer complètement une ressource
+
+<Method bg="#50e3c2">PATCH</Method> : modifier partiellement une ressource
+
+<Method bg="#f93e3e">DELETE</Method> : supprimer
+
+### Codes statut
+
+- <span style={{ color: "#49cc90" }}>201 Created</span>
+- <span style={{ color: "#49cc90" }}>204 No Content</span>
+
+- <span style={{ color: "#49cc90" }}>200 OK</span>
+- <span style={{ color: "#61affe" }}>301 Moved Permanently</span>
+- <span style={{ color: "#61affe" }}>302 Found</span>
+
+- <span style={{ color: "#fca130" }}>400 Bad Request</span>
+- <span style={{ color: "#fca130" }}>401 Unauthorized</span>
+- <span style={{ color: "#fca130" }}>403 Forbidden</span>
+- <span style={{ color: "#fca130" }}>404 Not Found</span>
+
+- <span style={{ color: "#f93e3e" }}>500 Internal Server Error</span>
+- <span style={{ color: "#f93e3e" }}>503 Service Unavailable</span>
+
+## Bonnes pratiques
+
+- Garder des routes cohérentes
+- Éviter les verbes dans les URLs
+- Versionner l'API
+- Gérer les erreurs de manière uniforme
+- Valider les entrées
+- Documenter avec Swagger ou OpenAPI
+- Prévoir du rate limiting si nécessaire
+
+## Types d'API
+
+- REST: HTTP, stateless, souvent JSON
+- SOAP: XML, plus strict
+- GraphQL: le client demande exactement les données voulues
+- gRPC: performant, HTTP/2, binaire
+- WebSocket: communication bidirectionnelle en temps réel
+
+## Stateless vs stateful
+
+- Stateless: chaque requête est autonome
+- Stateful: le serveur garde un état de conversation
