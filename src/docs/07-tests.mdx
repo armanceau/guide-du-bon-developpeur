@@ -51,6 +51,7 @@ Les tests sont essentiels pour garantir la qualité, la fiabilité et la mainten
     Plus un test est proche de l’utilisateur (E2E), plus il est coûteux à maintenir.
 
     À l’inverse, plus il est isolé (unitaire), plus il est rapide et stable.
+
 </Callout>
 
 ### Tests unitaires (80%)
@@ -69,7 +70,19 @@ Testent l'interaction entre plusieurs unités.
 
 Les tests end-to-end sont peu nombreux, lents et très coûteux.
 
-Testent l'application complète du point de vue utilisateur
+Testent l'application complète du point de vue utilisateur.
+
+## Beyoncé Rule
+
+- Si ton code compte vraiment, mets un test dessus
+- Cette règle s'applique à toute échelle
+- Un comportement important sans test est une dette immédiate
+
+## Fix It, Test It Rule
+
+- Bug trouvé = test obligatoire
+- Pas de fix sans test associé
+- Chaque bug devient un cas couvert à vie
 
 ## Tests unitaires
 
@@ -312,11 +325,13 @@ Enfin, il encourage une meilleure accessibilité en s’appuyant sur les standar
 ## Tests unitaires (frontend - React)
 
 Voici quelques bonnes pratiques pour les tests unitaires front :
+
 - Tester le comportement, pas les détails techniques internes
 - Éviter de tester les classes CSS sauf si elles ont un impact fonctionnel
 - Garder des tests simples et ciblés
 
 Exemple :
+
 ```typescript
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Button } from "./Button";
@@ -372,33 +387,28 @@ L'objectif est d'obtenir une couverture d'au moins 80% sur l'ensemble de l'appli
 ### Structure
 
 <Checklist
-    items={[
-        "Tests organisés avec describe/test",
-        "Noms descriptifs et clairs (`@DisplayName`)",
-        "Pattern GWT appliqué",
-        "Tests indépendants",
-    ]}
+  items={[
+    "Tests organisés avec describe/test",
+    "Noms descriptifs et clairs (`@DisplayName`)",
+    "Pattern GWT appliqué",
+    "Tests indépendants",
+  ]}
 />
 
 ### Qualité
 
 <Checklist
-    items={[
-        "Testent le comportement, pas l'implémentation",
-        "Couvrent les cas normaux et edge cases",
-        "Utilisent des mocks appropriés (à éviter le plus possible - on veut tester le comportement réel de l'application)",
-        "Rapides à exécuter",
-    ]}
+  items={[
+    "Testent le comportement, pas l'implémentation",
+    "Couvrent les cas normaux et edge cases",
+    "Utilisent des mocks appropriés (à éviter le plus possible - on veut tester le comportement réel de l'application)",
+    "Rapides à exécuter",
+  ]}
 />
 
 ### Maintenance
 
-<Checklist
-    items={[
-        "Faciles à comprendre",
-        "Faciles à modifier",
-    ]}
-/>
+<Checklist items={["Faciles à comprendre", "Faciles à modifier"]} />
 
 ## TDD (Test-Driven Development)
 
