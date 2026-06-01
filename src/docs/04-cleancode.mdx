@@ -1,0 +1,89 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { Callout } from "../components/Callout";
+
+<Meta title="Guide du bon developpeur/Clean Code" />
+
+# ✨ Clean Code
+
+Le code propre est un code facile à lire, comprendre, tester et faire évoluer.
+
+## Pourquoi du code propre ?
+
+> "Any fool can write code that a computer can understand. Good programmers write code that humans can understand." - Martin Fowler
+
+### Lisibilité
+
+- Le code est lu plus souvent qu'il n'est écrit
+- Une lecture rapide réduit les erreurs d'interprétation
+- La collaboration devient plus fluide
+
+### Maintenabilité
+
+- Les modifications sont plus rapides
+- Le risque de régression baisse
+- L'évolution devient plus sûre
+
+### Coût
+
+- Moins de dette technique
+- Moins de temps perdu à déchiffrer l'existant
+- Onboarding plus simple
+
+## Nommage
+
+### Variables et constantes
+
+- Préférer un nom qui exprime l'intention
+- Éviter les abréviations trop opaques
+
+### Fonctions
+
+- Un nom de fonction doit être un verbe clair
+- Une fonction doit idéalement faire une seule chose
+
+### Classes
+
+- Un nom de classe doit représenter un concept
+- Éviter les noms trop génériques comme `Manager` ou `Data`
+
+### Booléens
+
+- Préfixer avec `is`, `has`, `should` ou `can`
+
+## Fonctions
+
+### Petites et focalisées
+
+- Une fonction = une responsabilité
+- Une fonction longue est souvent un indice de mélange de règles
+- Extraire les étapes nommées améliore la lisibilité
+
+### Peu de paramètres
+
+- Regrouper les données quand cela a du sens
+- Éviter les fonctions impossibles à appeler sans relire la signature
+
+## Bonnes pratiques générales
+
+- Écrire des tests pour ce qui compte vraiment
+- Revoir le processus, pas seulement le code
+- Investir dans le build et la CI
+- Livrer plus petit et plus souvent
+- Garder les dépendances à jour
+- Remplacer les mocks par des fakes quand c'est possible
+- Mesurer avec intention avant de créer un nouveau dashboard
+- Traiter la documentation comme du code
+- Créer un climat de sécurité psychologique
+
+## Phoenix Architecture
+
+Quand on enlève des contraintes visibles dans le code, la rigueur ne disparaît pas: elle se déplace ailleurs.
+
+- La génération devient plus facile
+- La spécification doit devenir plus stricte
+- L'évaluation doit être automatisée
+- Les erreurs doivent remonter vite
+
+<Callout variant="warning" title="Rigueur déplacée">
+  On ne valide pas un résultat parce qu'il "marche", mais parce qu'il respecte une spec claire et testable.
+</Callout>
