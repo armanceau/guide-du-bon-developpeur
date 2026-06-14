@@ -1,0 +1,71 @@
+---
+title: Writing Guides
+order: 3
+---
+
+# Writing Guides
+
+Monkey-Doc uses **MDX** — Markdown with JSX components.
+
+Write plain Markdown and sprinkle in rich components wherever you need them.
+
+## Basic markdown
+
+All standard Markdown syntax works out of the box:
+
+- **Bold**, _italic_, `inline code`
+- [Links](https://example.com)
+- Images: `![alt](url)`
+- Tables, blockquotes, horizontal rules
+
+## Frontmatter
+
+Every page supports YAML frontmatter:
+
+```yaml
+---
+title: My Page Title
+order: 1
+---
+```
+
+- **title** — overrides the filename as the page title
+- **order** — controls navigation order (lower = first)
+
+## Using components
+
+Import is not required — all built-in components are globally available.
+
+```mdx
+<Callout type="warning">
+  Watch out for this edge case!
+</Callout>
+```
+
+See [Components](/en/components) for the full component reference.
+
+## Organizing with folders
+
+You can nest pages inside folders to group related content. The folder structure maps directly to the sidebar navigation.
+
+<FileTree>
+  <Folder name="docs">
+    <File name="getting-started.mdx" />
+    <Folder name="guides">
+      <File name="writing-guides.mdx" />
+      <File name="best-practices.mdx" />
+    </Folder>
+    <Folder name="reference">
+      <File name="components.mdx" />
+      <File name="configuration.mdx" />
+    </Folder>
+  </Folder>
+</FileTree>
+
+Each folder automatically becomes a collapsible section in the sidebar. The section title is derived from the folder name (kebab-case is converted to title case).
+
+To control the order of sections and pages, use the `order` frontmatter field — it works the same for files inside folders.
+
+<Callout type="info">
+  Folders can be nested as deeply as you need. There is no limit on nesting depth.
+</Callout>

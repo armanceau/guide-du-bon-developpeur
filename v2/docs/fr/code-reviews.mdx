@@ -1,0 +1,137 @@
+---
+title: Code Reviews
+order: 5
+---
+
+# Code Reviews
+
+Les revues de code constituent un processus essentiel pour garantir la qualité du code et favoriser le partage
+de connaissances au sein d'une équipe.
+
+Bien qu'elles puissent parfois paraître longues ou fastidieuses, elles
+jouent un rôle clé dans l'amélioration continue du code et des pratiques de développement.
+
+## Pourquoi faire des code reviews ?
+
+### Amélioration de la qualité
+
+- Détection précoce des bugs
+- Identification des problèmes de performance
+- Respect des standards de code
+- Amélioration de la maintenabilité
+
+### Partage de connaissances
+
+- Transfert de compétences entre développeurs
+- Familiarisation avec différentes parties du codebase
+- Apprentissage de nouvelles techniques
+- Meilleur compéhension du métier
+
+### Cohésion d'équipe
+
+- Responsabilité collective du code
+- Communication améliorée
+- Culture d'amélioration continue
+
+## Bonnes pratiques pour soumettre du code
+
+### 1. Gardez les MR/PR petites et ciblées
+
+```
+❌ PR avec 50 fichiers modifiés, 2000 lignes changées
+✅ PR avec 5-10 fichiers, 200-300 lignes max
+```
+
+### 2. Rédigez une description claire
+
+Chaque PR devrait contenir :
+
+- **Nom de la branche** : Utiliser une convention claire, par exemple : `feat/Nom_ticket_courte_description_en_5_mots`
+- **Titre de la PR** : Une phrase courte qui résume le changement
+- **Contexte** : Un résumé rapide du ticket ou du problème traité
+- **Description** : Pourquoi ce changement ?
+- **Changements** : Qu'est-ce qui a été modifié ?
+- **Tests** : Comment vérifier que ça fonctionne ?
+- **Screenshots** : Si pertinent (UI)
+
+### 3. Auto-review avant de soumettre
+
+- Relisez votre propre code
+- Testez localement
+- Vérifiez que les tests passent
+- Supprimez les console.log et code commenté
+
+## Bonnes pratiques pour relire du code
+
+Soyez constructif et bienveillant :
+
+```
+❌ "Ce code est nul"
+✅ "Cette approche pourrait être simplifiée. Que penses-tu de...?"
+
+❌ "Tu ne sais pas coder ?"
+✅ "J'ai une suggestion qui pourrait améliorer la lisibilité..."
+```
+
+## Etapes de la review
+
+- Regarder l'architecture : les fichiers sont-ils au bon endroit ? La structure respecte-t-elle l'architecture du projet ?
+- Lire le ticket : comprendre le besoin fonctionnel et les attentes décrites.
+- Lire les tests : vérifier que le comportement attendu est bien couvert et comprendre la logique métier.
+- Lire l'implémentation : le code répond-il correctement au besoin métier ?
+- Vérifier la lisibilité : les noms de fonctions, variables et composants sont-ils explicites ?
+- Évaluer la simplicité : le code est-il clair et maintenable ou pourrait-il être simplifié ?
+- Vérifier les cas limites : les erreurs, cas particuliers ou états inattendus sont-ils bien gérés ?
+- Contrôler la cohérence : le code respecte-t-il les conventions et les pratiques du projet ?
+
+## Lecture utile pendant une review
+
+- Lire le besoin fonctionnel avant de juger la solution technique
+- Lire les tests pour comprendre le comportement attendu
+- Regarder si l'architecture existante est respectée
+- En Spring, utiliser des `@DisplayName` orientés comportement pour documenter les tests
+
+## Timing des reviews
+
+- Objectif : reviewer dans les **2-4 heures**
+- Bloquez du temps dédié aux reviews
+- Options : Le matin avant de démarrer ses tâches (préférence), avant la pause déjeuner, après la pause déjeuner, en fin de journée
+
+## Checklist du reviewer
+
+### Fonctionnalité
+
+- [ ] Le code fait ce qu'il est censé faire
+- [ ] Pas de régression introduite
+
+### Qualité du code
+
+- [ ] Code lisible et compréhensible
+- [ ] Noms de variables/fonctions explicites
+- [ ] Pas de duplication inutile
+- [ ] Respect des conventions du projet
+
+### Tests
+
+- [ ] Tests présents et pertinents
+- [ ] Couverture suffisante
+- [ ] Tests passent
+
+## Outils recommandés
+
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [SonarQube](https://www.sonarsource.com/fr/products/sonarqube/)
+- [Gitleaks](https://github.com/gitleaks/gitleaks)
+
+## Ressources
+
+- [Google Engineering Practices ↗](https://google.github.io/eng-practices/review/)
+- [Thoughtbot Code Review Guide ↗](https://github.com/thoughtbot/guides/tree/main/code-review)
+- [Conventional Comments ↗](https://conventionalcomments.org/)
+- [Testing is Software Engineering ↗](https://thoughtbot.com/blog/testing-is-software-engineering?ref=dailydev)
+- [Designing Design Systems ↗](https://tkdodo.eu/blog/designing-design-systems?ref=dailydev)
+
+---
+
+> _"Code reviews are about finding the best solution together, not about being right."_

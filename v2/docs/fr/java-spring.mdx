@@ -1,0 +1,94 @@
+---
+title: Java & Spring
+order: 10
+---
+
+# Java & Spring
+
+Cette page regroupe les repères utiles pour un entretien Java/Spring ou pour réviser les fondamentaux du stack.
+
+## Environnement Java
+
+- La JVM exécute le bytecode Java
+- Le bytecode est le code intermédiaire produit à la compilation
+- Le langage intermédiaire sert d'étape entre le code source et la machine
+
+## Java core
+
+### Versions LTS
+
+- 8
+- 11
+- 17
+- 21
+
+### Mémoire
+
+- Stack: variables locales et appels de méthodes
+- Heap: objets gérés par le garbage collector
+
+### Collections
+
+- List: ordonnée, doublons autorisés, accès par index
+- Set: pas de doublons
+- HashMap: clé/valeur avec accès rapide
+
+### Exceptions
+
+- Checked: IOException, SQLException
+- Unchecked: RuntimeException, NullPointerException
+
+### Concepts avancés
+
+- Record: DTO simplifié
+- Try-with-resources: fermeture automatique des ressources
+- Classe immutable: champs privés finals et pas de mutation
+
+## Spring Framework
+
+### Stéréotypes
+
+- `@Component`: composant générique
+- `@Service`: couche service
+- `@Repository`: accès aux données
+- `@Controller`: contrôleur web MVC
+- `@RestController`: contrôleur REST
+
+### Scopes
+
+- Singleton: par défaut
+- Prototype: nouvelle instance à chaque demande
+- Request: lié à la requête HTTP
+- Session: lié à la session web
+
+### Injection de dépendances
+
+- Injection par champ
+- Injection par constructeur
+- Injection par setter
+
+### Rôle du conteneur
+
+- Créer les beans
+- Les configurer
+- Injecter les dépendances
+
+## HTTP et Spring Web
+
+- GET, POST, PUT, PATCH, DELETE
+- `@RestControllerAdvice` pour les erreurs globales
+- `@ExceptionHandler` pour traiter des exceptions précises
+- `@RequestMapping("/api/v2/...")` pour le versioning
+
+## Base de données et JPA
+
+- JPA est une spécification
+- Hibernate est une implémentation de JPA
+- Le problème N+1 se corrige souvent avec `JOIN FETCH`
+- `@Column(nullable = false)` et `@ManyToOne(optional = false)` clarifient les contraintes
+
+## Démarche pratique
+
+- Favoriser l'injection par constructeur
+- Utiliser les interfaces pour abstraire les dépendances
+- Garder les règles métier testables sans infrastructure lourde

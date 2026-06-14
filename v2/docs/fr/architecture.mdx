@@ -1,0 +1,87 @@
+---
+title: Architecture logicielle
+order: 3
+---
+
+# Architecture logicielle
+
+L'architecture définit la structure d'un système, les frontières entre les responsabilités et les règles qui permettent de faire évoluer le projet sans tout casser.
+
+## Pourquoi une bonne architecture ?
+
+### Scalabilité
+
+- Capacité à gérer la croissance
+- Ajout de fonctionnalités sans tout casser
+- Performance maintenue
+
+### Maintenabilité
+
+- Code plus simple à comprendre
+- Modifications localisées
+- Tests plus faciles à écrire
+
+### Flexibilité
+
+- Adaptation aux changements
+- Réutilisation de composants
+- Évolution technologique plus simple
+
+## Principes utiles
+
+### Separation of Concerns
+
+Séparer les responsabilités aide à réduire le couplage et à rendre chaque partie plus testable.
+
+### Dependency Inversion
+
+Les règles métier doivent dépendre d'abstractions, pas de concrétions.
+
+### Architecture hexagonale vs Clean Architecture
+
+- La Clean Architecture généralise l'architecture hexagonale
+- L'hexagonale isole le métier via des ports et adapters
+- La Clean Architecture ajoute une organisation plus stricte en couches internes
+
+<Callout type="info">
+  Si le besoin est simple ou si l'équipe cherche surtout à livrer vite, l'architecture hexagonale est souvent plus légère à appliquer.
+  Si le cadre est plus exigeant et qu'on veut une séparation plus stricte, la Clean Architecture apporte un niveau de rigueur supplémentaire.
+</Callout>
+
+## Styles d'architecture
+
+### Principaux styles
+
+1. Monolithique
+2. En couches
+3. Hexagonale
+4. Microservices
+5. Serverless
+6. Événementielle
+
+### Modèle en couches
+
+- Présentation
+- Application
+- Domaine
+- Accès aux données
+
+## Tests et architecture
+
+- Les tests boîte noire valident le comportement externe
+- Les tests boîte blanche vérifient la logique interne et les chemins d'exécution
+- Les deux approches sont complémentaires
+
+## Indépendances d'une bonne architecture
+
+1. Indépendante des frameworks
+2. Testable sans UI, DB ou serveur web
+3. Indépendante de l'UI
+4. Indépendante de la base de données
+5. Indépendante des systèmes externes
+
+## Idées à garder en tête
+
+- Une architecture doit servir le métier, pas la mode technique
+- Les frontières doivent être explicites
+- Les dépendances vers l'extérieur doivent rester au bord du système
