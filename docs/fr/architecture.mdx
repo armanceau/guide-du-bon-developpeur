@@ -61,10 +61,24 @@ Les règles métier doivent dépendre d'abstractions, pas de concrétions.
 
 ### Modèle en couches
 
-- Présentation
-- Application
-- Domaine
-- Accès aux données
+```mermaid
+flowchart TD
+  P["🖥️ Présentation\nUI, API controllers, CLI"]
+  A["⚙️ Application\nUse cases, orchestration"]
+  D["🧠 Domaine\nEntités, règles métier"]
+  DA["🗄️ Accès aux données\nRepositories, ORM, DB"]
+
+  P --> A
+  A --> D
+  D --> DA
+
+  style P fill:#4f86c6,color:#fff,stroke:none
+  style A fill:#5aaa6e,color:#fff,stroke:none
+  style D fill:#e07b39,color:#fff,stroke:none
+  style DA fill:#9b6bb5,color:#fff,stroke:none
+```
+
+Chaque couche ne dépend que de la couche immédiatement en dessous — jamais vers le haut.
 
 ## Tests et architecture
 

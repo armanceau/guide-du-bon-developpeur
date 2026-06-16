@@ -1,10 +1,11 @@
-import { Meta } from "@storybook/addon-docs/blocks";
-
-<Meta title="Guide du bon developpeur/System Design" />
+---
+title: System Design
+order: 11
+---
 
 # System Design
 
-Le system design consiste à choisir une architecture capable de tenir la charge, d'évoluer et de rester exploitable.
+_Le system design consiste à choisir une architecture capable de tenir la charge, d'évoluer et de rester exploitable._
 
 ## Bases
 
@@ -31,6 +32,27 @@ Le system design consiste à choisir une architecture capable de tenir la charge
 ## Architecture patterns
 
 - Monolithe vs microservices
+
+```mermaid
+flowchart LR
+  subgraph Monolithe
+    direction TB
+    UI1[UI] --> BL[Business Logic]
+    BL --> DAL[Data Access]
+    DAL --> DB1[(Database)]
+  end
+
+  subgraph Microservices
+    direction TB
+    GW[API Gateway] --> S1[Auth Service]
+    GW --> S2[Order Service]
+    GW --> S3[Product Service]
+    S1 --> DB2[(DB Auth)]
+    S2 --> DB3[(DB Orders)]
+    S3 --> DB4[(DB Products)]
+  end
+```
+
 - Event-driven architecture
 - Pub/Sub
 - Message queues comme Kafka ou RabbitMQ

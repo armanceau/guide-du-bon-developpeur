@@ -1,13 +1,12 @@
 {
   "name": "guide-du-bon-developpeur",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "description": "Documentation du guide du bon développeur",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "dev": "monkey-doc dev",
+    "build": "monkey-doc build"
   },
   "repository": {
     "type": "git",
@@ -20,25 +19,7 @@
     "url": "https://github.com/armanceau/guide-du-bon-developpeur/issues"
   },
   "homepage": "https://github.com/armanceau/guide-du-bon-developpeur#readme",
-  "dependencies": {
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
-  },
   "devDependencies": {
-    "@storybook/addon-a11y": "^10.2.16",
-    "@storybook/addon-docs": "^10.2.16",
-    "@storybook/addon-onboarding": "^10.2.16",
-    "@storybook/addon-vitest": "^10.2.16",
-    "@storybook/react-vite": "^10.2.16",
-    "@vitejs/plugin-react": "^5.1.4",
-    "@vitest/browser-playwright": "^4.0.18",
-    "@vitest/coverage-v8": "^4.0.18",
-    "monkey-doc": "^1.3.5",
-    "playwright": "^1.58.2",
-    "prop-types": "^15.8.1",
-    "storybook": "^10.2.16",
-    "typescript": "^5.3.3",
-    "vite": "^7.3.1",
-    "vitest": "^4.0.18"
+    "monkey-doc": "^1.3.5"
   }
 }

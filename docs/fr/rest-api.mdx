@@ -40,30 +40,34 @@ Une API REST doit rester simple, explicite et prévisible.
 
 ### Méthodes
 
-- **`GET`** : récupérer
-- **`POST`** : envoyer et créer une ressource
-- **`PUT`** : remplacer complètement une ressource
-- **`PATCH`** : modifier partiellement une ressource
-- **`DELETE`** : supprimer
+- <Badge variant="info">GET</Badge> : récupérer
+- <Badge variant="success">POST</Badge> : envoyer et créer une ressource
+- <Badge variant="warning">PUT</Badge> : remplacer complètement une ressource
+- <Badge variant="warning">PATCH</Badge> : modifier partiellement une ressource
+- <Badge variant="error">DELETE</Badge> : supprimer
 
 ### Codes statut
 
-**2xx — Succès**
+**2xx - Succès**
+
 - `200 OK`
 - `201 Created`
 - `204 No Content`
 
-**3xx — Redirection**
+**3xx - Redirection**
+
 - `301 Moved Permanently`
 - `302 Found`
 
-**4xx — Erreur client**
+**4xx - Erreur client**
+
 - `400 Bad Request`
 - `401 Unauthorized`
 - `403 Forbidden`
 - `404 Not Found`
 
-**5xx — Erreur serveur**
+**5xx - Erreur serveur**
+
 - `500 Internal Server Error`
 - `503 Service Unavailable`
 
