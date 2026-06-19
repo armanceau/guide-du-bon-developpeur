@@ -1,80 +1,76 @@
-# 📘 Guide du bon développeur
+# Guide du bon développeur
 
-Documentation interactive des bonnes pratiques de développement logiciel, créée avec Storybook.
+Documentation interactive des bonnes pratiques de développement logiciel, créée avec Monkey-Doc.
 
-## 🎯 À propos
+## À propos
 
 Ce guide rassemble les pratiques, principes et méthodologies essentielles pour produire du code de qualité, maintenable et évolutif. Il couvre :
 
-- 🌱 **Introduction** : Le cadre général du guide
-- 🔍 **Code Reviews** : Comment effectuer et recevoir des revues de code constructives
-- 🧪 **Tests** : Stratégies de tests unitaires, d'intégration et end-to-end
-- 🌿 **Git & Versionning** : Maîtriser Git et les bonnes pratiques de versioning
-- 🏗️ **Architecture** : Patterns, principes et séparation des responsabilités
-- ✨ **Clean Code** : Principes du code propre et lisible
-- 📖 **Documentation** : Comment documenter efficacement son code
-- 🔌 **REST API** : Les principes HTTP et REST essentiels
-- ☕ **Java & Spring** : Les fondamentaux Java/Spring pour l'entretien
-- 📐 **System Design** : Les bases d'architecture distribuée
-- 🧠 **Paradigmes** : DDD, TDD et BDD
-- 🛠️ **Software Craftsmanship** : Les repères et métaphores du craft
+- **Introduction** : Le cadre général du guide
+- **Code Reviews** : Comment effectuer et recevoir des revues de code constructives
+- **Tests** : Stratégies de tests unitaires, d'intégration et end-to-end
+- **Git & Versionning** : Maîtriser Git et les bonnes pratiques de versioning
+- **Architecture** : Patterns, principes et séparation des responsabilités
+- **Clean Code** : Principes du code propre et lisible
+- **Documentation** : Comment documenter efficacement son code
+- **REST API** : Les principes HTTP et REST essentiels
+- **Java & Spring** : Les fondamentaux Java/Spring pour l'entretien
+- **System Design** : Les bases d'architecture distribuée
+- **Paradigmes** : DDD, TDD et BDD
+- **Software Craftsmanship** : Les repères et métaphores du craft
 
-## 📦 Installation
+## Installation
 
 ```bash
 npm install
 ```
 
-## 🚀 Démarrage
+## Démarrage
 
 Pour lancer la documentation en mode développement :
 
 ```bash
-npm run storybook
+npm run dev
 ```
 
-La documentation sera accessible sur [http://localhost:6006](http://localhost:6006)
-
-## 🏗️ Build
+## Build
 
 Pour créer une version statique de la documentation :
 
 ```bash
-npm run build-storybook
+npm run build
 ```
 
-Les fichiers seront générés dans le dossier `storybook-static/` et peuvent être déployés sur n'importe quel hébergement statique (Netlify, Vercel, GitHub Pages, etc.).
-
-## 📁 Structure du projet
+## Structure du projet
 
 ```
 guide-du-bon-developpeur/
-├── src/
-│   └── docs/             # Documentation en MDX
-│       ├── 01-introduction.mdx
-│       ├── 02-git.mdx
-│       ├── 03-architecture.mdx
-│       ├── 04-cleancode.mdx
-│       ├── 05-codereviews.mdx
-│       ├── 06-documentation.mdx
-│       ├── 07-tests.mdx
-│       ├── 08-ressources-codereview.mdx
-│       ├── 09-rest-api.mdx
-│       ├── 10-java-spring.mdx
-│       ├── 11-system-design.mdx
-│       ├── 12-paradigmes.mdx
-│       └── 13-software-craftsmanship.mdx
-├── .storybook/          # Configuration Storybook
+├── docs/
+│   ├── fr/                        # Documentation en français (MDX)
+│   │   ├── introduction.mdx
+│   │   ├── git.mdx
+│   │   ├── architecture.mdx
+│   │   ├── clean-code.mdx
+│   │   ├── code-reviews.mdx
+│   │   ├── documentation.mdx
+│   │   ├── tests.mdx
+│   │   ├── ressources.mdx
+│   │   ├── rest-api.mdx
+│   │   ├── java-spring.mdx
+│   │   ├── system-design.mdx
+│   │   ├── paradigmes.mdx
+│   │   └── software-craftsmanship.mdx
+│   └── en/                        # English documentation (WIP)
+├── monkey-doc.config.ts           # Configuration Monkey-Doc
 └── package.json
 ```
 
-## 🛠️ Technologies
+## Technologies
 
-- **Storybook** : Framework de documentation interactive
+- **Monkey-Doc** : Framework de documentation statique
 - **MDX** : Markdown enrichi avec JSX
-- **Vite** : Build tool rapide
 
-## 🤝 Contribution
+## Contribution
 
 Les contributions sont les bienvenues ! Pour contribuer :
 
@@ -84,11 +80,11 @@ Les contributions sont les bienvenues ! Pour contribuer :
 4. Pushez vers la branche (`git push origin feature/amelioration`)
 5. Ouvrez une Pull Request
 
-## 📄 Licence
+## Licence
 
-MIT
+ISC
 
-## 📚 Ressources
+## Ressources
 
 Ce guide s'inspire des meilleures pratiques de l'industrie et des ressources suivantes :
 
@@ -99,4 +95,4 @@ Ce guide s'inspire des meilleures pratiques de l'industrie et des ressources sui
 
 ---
 
-_Dernière mise à jour : Mars 2026_
+_Dernière mise à jour : Juin 2026_

@@ -5,4 +5,5 @@ export default defineConfig({
   description: "Built with Monkey-Doc",
   github: "https://github.com/armanceau/guide-du-bon-developpeur",
   docsDir: "docs",
+  landingPage: "./LandingPage.tsx",
 });
