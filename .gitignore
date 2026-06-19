@@ -6,6 +6,7 @@
 # Production
 build/
 dist/
+docs-dist/
 storybook-static/
 
 # Divers
