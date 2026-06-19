@@ -1,0 +1,95 @@
+---
+title: REST API
+order: 9
+---
+
+# REST API
+
+A REST API should remain simple, explicit, and predictable.
+
+## The 5 REST principles
+
+### Client-server
+
+- Separation between client and server
+- Enables portability and scalability
+
+### Stateless
+
+- Each request contains all the necessary information
+- The server does not depend on state kept between calls
+
+### Cacheable
+
+- Responses can be cached
+- Improves performance
+
+### Layered system
+
+- Communication can pass through intermediaries
+- Allows adding proxies, gateways, or reverse proxies
+
+### Uniform interface
+
+- Resources identified by URI
+- Representation manipulable in JSON or XML
+- Self-descriptive messages
+- Links in responses for HATEOAS
+
+## HTTP
+
+### Methods
+
+- <Badge variant="info">GET</Badge>: retrieve
+- <Badge variant="success">POST</Badge>: send and create a resource
+- <Badge variant="warning">PUT</Badge>: completely replace a resource
+- <Badge variant="warning">PATCH</Badge>: partially modify a resource
+- <Badge variant="error">DELETE</Badge>: delete
+
+### Status codes
+
+**2xx - Success**
+
+- `200 OK`
+- `201 Created`
+- `204 No Content`
+
+**3xx - Redirection**
+
+- `301 Moved Permanently`
+- `302 Found`
+
+**4xx - Client error**
+
+- `400 Bad Request`
+- `401 Unauthorized`
+- `403 Forbidden`
+- `404 Not Found`
+
+**5xx - Server error**
+
+- `500 Internal Server Error`
+- `503 Service Unavailable`
+
+## Best practices
+
+- Keep routes consistent
+- Avoid verbs in URLs
+- Version the API
+- Handle errors uniformly
+- Validate inputs
+- Document with Swagger or OpenAPI
+- Plan for rate limiting if necessary
+
+## API types
+
+- REST: HTTP, stateless, often JSON
+- SOAP: XML, stricter
+- GraphQL: the client requests exactly the data it wants
+- gRPC: performant, HTTP/2, binary
+- WebSocket: bidirectional real-time communication
+
+## Stateless vs stateful
+
+- Stateless: each request is self-contained
+- Stateful: the server maintains a conversation state

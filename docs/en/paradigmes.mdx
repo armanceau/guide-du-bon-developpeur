@@ -1,0 +1,44 @@
+---
+title: Paradigms
+order: 12
+---
+
+# Paradigms
+
+A programming paradigm is a conceptual model that guides the way you think about, structure, and write a program.
+
+## Domain-Driven Design
+
+- Puts the business domain at the center
+- Reduces the gap between developers and domain experts with a ubiquitous language
+- Uses bounded contexts to limit complexity
+- Makes code more faithful to business rules
+
+### Banking example
+
+- Entities: Account, Transaction, Client
+- Business rule: a savings account balance must never go negative
+
+## Test-Driven Development
+
+- Write tests before writing code
+- Red, Green, Refactor cycle
+- Strengthens quality and limits regressions
+
+### Process
+
+1. Write a failing test
+2. Write the minimal code to make it pass
+3. Refactor without breaking the behavior
+
+## Behavior-Driven Development
+
+- Extension of TDD focused on expected behavior
+- Often uses Given, When, Then
+- Makes acceptance criteria understandable by the whole team
+
+## Relationship between the three
+
+- DDD helps structure the business domain
+- TDD secures the implementation
+- BDD clarifies expected behaviors

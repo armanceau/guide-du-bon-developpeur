@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/armanceau/guide-du-bon-developpeur#readme",
   "devDependencies": {
-    "monkey-doc": "^1.3.10"
+    "monkey-doc": "^1.3.11"
   }
 }

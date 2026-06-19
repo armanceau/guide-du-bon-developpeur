@@ -1,0 +1,90 @@
+---
+title: Clean Code
+order: 4
+---
+
+# Clean Code
+
+Clean code is code that is easy to read, understand, test, and evolve.
+
+## Why clean code?
+
+> Any fool can write code that a computer can understand. Good programmers write code that humans can understand. - Martin Fowler
+
+### Readability
+
+- Code is read far more often than it is written
+- Quick reading reduces misinterpretation errors
+- Collaboration becomes smoother
+
+### Maintainability
+
+- Changes are faster to make
+- Risk of regression decreases
+- Evolution becomes safer
+
+### Cost
+
+- Less technical debt
+- Less time wasted deciphering existing code
+- Simpler onboarding
+
+## Naming
+
+### Variables and constants
+
+- Prefer a name that expresses intent
+- Avoid overly opaque abbreviations
+
+### Functions
+
+- A function name should be a clear verb
+- A function should ideally do one thing
+
+### Classes
+
+- A class name should represent a concept
+- Avoid overly generic names like `Manager` or `Data`
+
+### Booleans
+
+- Prefix with `is`, `has`, `should`, or `can`
+
+## Functions
+
+### Small and focused
+
+- One function = one responsibility
+- A long function is often a sign of mixed concerns
+- Extracting named steps improves readability
+
+### Few parameters
+
+- Group data when it makes sense
+- Avoid functions that are impossible to call without re-reading the signature
+
+## General best practices
+
+- Write tests for what truly matters
+- Review the process, not just the code
+- Invest in the build and CI
+- Ship smaller and more often
+- Keep dependencies up to date
+- Replace mocks with fakes when possible
+- Measure with intent before creating a new dashboard
+- Treat documentation as code
+- Foster a culture of psychological safety
+
+## Phoenix Architecture
+
+When visible constraints are removed from code, rigor doesn't disappear — it moves elsewhere.
+
+- Generation becomes easier
+- Specification must become stricter
+- Evaluation must be automated
+- Errors must surface quickly
+
+<Callout type="warning">
+  A result is not validated because it "works", but because it meets a clear
+  and testable specification.
+</Callout>

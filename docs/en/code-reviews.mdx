@@ -1,0 +1,135 @@
+---
+title: Code Reviews
+order: 5
+---
+
+# Code Reviews
+
+Code reviews are an essential process for ensuring code quality and fostering knowledge sharing within a team.
+
+Although they can sometimes feel slow or tedious, they play a key role in the continuous improvement of code and development practices.
+
+## Why do code reviews?
+
+### Quality improvement
+
+- Early bug detection
+- Identification of performance issues
+- Adherence to code standards
+- Improved maintainability
+
+### Knowledge sharing
+
+- Skill transfer between developers
+- Familiarity with different parts of the codebase
+- Learning new techniques
+- Better understanding of the business domain
+
+### Team cohesion
+
+- Collective ownership of code
+- Improved communication
+- Culture of continuous improvement
+
+## Best practices for submitting code
+
+### 1. Keep MRs/PRs small and focused
+
+```
+❌ PR with 50 modified files, 2000 changed lines
+✅ PR with 5-10 files, 200-300 lines max
+```
+
+### 2. Write a clear description
+
+Each PR should contain:
+
+- **Branch name**: Use a clear convention, e.g.: `feat/Ticket_name_short_description_in_5_words`
+- **PR title**: A short sentence summarizing the change
+- **Context**: A quick summary of the ticket or problem addressed
+- **Description**: Why this change?
+- **Changes**: What was modified?
+- **Tests**: How to verify it works?
+- **Screenshots**: If relevant (UI)
+
+### 3. Self-review before submitting
+
+- Re-read your own code
+- Test locally
+- Verify that tests pass
+- Remove console.log statements and commented-out code
+
+## Best practices for reviewing code
+
+Be constructive and kind:
+
+```
+❌ "This code is terrible"
+✅ "This approach could be simplified. What do you think of...?"
+
+❌ "Can't you code?"
+✅ "I have a suggestion that could improve readability..."
+```
+
+## Review steps
+
+- Check the architecture: are files in the right place? Does the structure follow the project architecture?
+- Read the ticket: understand the functional need and the stated expectations.
+- Read the tests: verify that the expected behavior is well covered and understand the business logic.
+- Read the implementation: does the code correctly address the business need?
+- Check readability: are function names, variables, and components explicit?
+- Evaluate simplicity: is the code clear and maintainable, or could it be simplified?
+- Check edge cases: are errors, edge cases, or unexpected states handled?
+- Check consistency: does the code follow the project's conventions and practices?
+
+## Useful reading during a review
+
+- Read the functional requirement before judging the technical solution
+- Read the tests to understand the expected behavior
+- Check whether the existing architecture is respected
+- In Spring, use behavior-oriented `@DisplayName` to document tests
+
+## Review timing
+
+- Goal: review within **2-4 hours**
+- Block dedicated time for reviews
+- Options: In the morning before starting your tasks (preferred), before lunch, after lunch, at end of day
+
+## Reviewer checklist
+
+### Functionality
+
+- [ ] The code does what it is supposed to do
+- [ ] No regression introduced
+
+### Code quality
+
+- [ ] Code is readable and understandable
+- [ ] Variable/function names are explicit
+- [ ] No unnecessary duplication
+- [ ] Project conventions are followed
+
+### Tests
+
+- [ ] Tests are present and relevant
+- [ ] Sufficient coverage
+- [ ] Tests pass
+
+## Recommended tools
+
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [SonarQube](https://www.sonarsource.com/products/sonarqube/)
+- [Gitleaks](https://github.com/gitleaks/gitleaks)
+
+## Resources
+
+- [Google Engineering Practices ↗](https://google.github.io/eng-practices/review/)
+- [Thoughtbot Code Review Guide ↗](https://github.com/thoughtbot/guides/tree/main/code-review)
+- [Conventional Comments ↗](https://conventionalcomments.org/)
+- [Testing is Software Engineering ↗](https://thoughtbot.com/blog/testing-is-software-engineering?ref=dailydev)
+- [Designing Design Systems ↗](https://tkdodo.eu/blog/designing-design-systems?ref=dailydev)
+
+---
+
+> _Code reviews are about finding the best solution together, not about being right._

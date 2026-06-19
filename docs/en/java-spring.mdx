@@ -1,0 +1,96 @@
+---
+title: Java & Spring
+order: 10
+---
+
+# Java & Spring
+
+This page gathers useful reference points for a Java/Spring interview or to review stack fundamentals.
+
+## Java environment
+
+- The JVM executes Java bytecode
+- Bytecode is the intermediate code produced at compilation
+- The intermediate language is the step between source code and the machine
+
+## Java core
+
+### LTS versions
+
+- 8
+- 11
+- 17
+- 21
+
+### Memory
+
+- Stack: local variables and method calls
+- Heap: objects managed by the garbage collector
+
+### Collections
+
+- List: ordered, duplicates allowed, index access
+- Set: no duplicates
+- HashMap: key/value with fast access
+
+### Exceptions
+
+- Checked: IOException, SQLException
+- Unchecked: RuntimeException, NullPointerException
+
+### Advanced concepts
+
+- Record: simplified DTO
+- Try-with-resources: automatic resource closing
+- Immutable class: private final fields and no mutation
+
+## Spring Framework
+
+### Stereotypes
+
+| Annotation | Role |
+|---|---|
+| `@Component` | Generic component |
+| `@Service` | Service layer |
+| `@Repository` | Data access |
+| `@Controller` | MVC web controller |
+| `@RestController` | REST controller |
+
+### Scopes
+
+- Singleton: default
+- Prototype: new instance per request
+- Request: bound to the HTTP request
+- Session: bound to the web session
+
+### Dependency injection
+
+- Field injection
+- Constructor injection
+- Setter injection
+
+### Container role
+
+- Create beans
+- Configure them
+- Inject dependencies
+
+## HTTP and Spring Web
+
+- <Badge variant="info">GET</Badge> <Badge variant="success">POST</Badge> <Badge variant="warning">PUT</Badge> <Badge variant="warning">PATCH</Badge> <Badge variant="error">DELETE</Badge>
+- `@RestControllerAdvice` for global error handling
+- `@ExceptionHandler` to handle specific exceptions
+- `@RequestMapping("/api/v2/...")` for versioning
+
+## Database and JPA
+
+- JPA is a specification
+- Hibernate is an implementation of JPA
+- The N+1 problem is often fixed with `JOIN FETCH`
+- `@Column(nullable = false)` and `@ManyToOne(optional = false)` clarify constraints
+
+## Practical approach
+
+- Favor constructor injection
+- Use interfaces to abstract dependencies
+- Keep business rules testable without heavy infrastructure

@@ -1,0 +1,119 @@
+---
+title: Git & Versioning
+order: 2
+---
+
+# Git & Versioning
+
+Git is the most widely used versioning tool. Mastering it is essential for working in teams and securing the project history.
+
+## Why use Git?
+
+### Complete history
+
+- Know who did what and when
+- Roll back if necessary
+- Understand how the code has evolved
+
+### Collaboration
+
+- Easier teamwork
+- Branches to isolate work
+- Conflict resolution
+
+### Backup
+
+- Code saved on a remote server
+- Protection against data loss
+
+## Commits
+
+### Recommended format
+
+```text
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+### Commit types
+
+```text
+feat: new feature
+fix: bug fix
+refactor: refactoring
+chore: maintenance tasks
+revert: reverting a previous commit
+```
+
+<Callout type="warning">
+  _Pull/Rebase regularly (at least once a day) to avoid large conflicts._
+</Callout>
+
+### Commit best practices
+
+#### Atomic commits
+
+- One logical change per commit
+- Short but explicit messages
+- A commit should be readable and understandable on its own
+
+#### Frequent commits
+
+- Commit after each complete feature
+- Commit after each bug fix
+- Avoid catch-all end-of-day commits
+
+#### Test before committing
+
+<Steps>
+  <Step title="Make the changes"></Step>
+  <Step title="Test locally"></Step>
+  <Step title="Review changes with `git diff`"></Step>
+  <Step title="Stage the files"></Step>
+  <Step title="Commit"></Step>
+  <Step title="Push"></Step>
+</Steps>
+
+## Branches and reviews
+
+### Branch naming
+
+- `feat/Ticket_name_short_description_in_5_words`
+- `fix/Ticket_name_short_description_in_5_words`
+
+### Pull request
+
+A good PR contains:
+
+- The ticket context
+- The reason for the change
+- The list of changes
+- Tests performed
+- Screenshots if needed
+
+<Callout type="warning">
+  _If you're working in Agile, one ticket = one PR/MR._
+</Callout>
+
+## Merge vs Rebase
+
+- Merge: merges branches with a merge commit
+- Rebase: replays commits on top of the target branch
+
+### When to prefer which?
+
+- Merge to preserve the context of team work
+- Rebase to keep a linear history on a local branch
+
+## What to avoid
+
+- Commits titled `update`, `wip`, or `fix stuff`
+- Branches that live too long without synchronization
+- Oversized PRs mixing multiple topics
+
+---
+
+> A good Git history tells a readable story of the product.

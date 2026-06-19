@@ -1,0 +1,64 @@
+---
+title: System Design
+order: 11
+---
+
+# System Design
+
+_System design is about choosing an architecture capable of handling load, evolving over time, and remaining operable._
+
+## Fundamentals
+
+- What happens when you type a URL in the browser
+- DNS, Load Balancer and CDN
+- TCP vs UDP
+- HTTP vs HTTPS
+
+## Data and storage
+
+- SQL vs NoSQL
+- Indexing
+- Replication
+- Sharding
+- When to choose MongoDB or PostgreSQL
+
+## Scaling techniques
+
+- Horizontal scaling
+- Vertical scaling
+- Cache with Redis or Memcached
+- Load balancing: round-robin, IP hashing
+
+## Architecture patterns
+
+- Monolith vs microservices
+
+```mermaid
+flowchart LR
+  subgraph Monolith
+    direction TB
+    UI1[UI] --> BL[Business Logic]
+    BL --> DAL[Data Access]
+    DAL --> DB1[(Database)]
+  end
+
+  subgraph Microservices
+    direction TB
+    GW[API Gateway] --> S1[Auth Service]
+    GW --> S2[Order Service]
+    GW --> S3[Product Service]
+    S1 --> DB2[(DB Auth)]
+    S2 --> DB3[(DB Orders)]
+    S3 --> DB4[(DB Products)]
+  end
+```
+
+- Event-driven architecture
+- Pub/Sub
+- Message queues like Kafka or RabbitMQ
+
+## Framing ideas
+
+- Storage choice should follow the real need, not hype
+- Scalability has an operational cost
+- A distributed architecture adds complexity everywhere
